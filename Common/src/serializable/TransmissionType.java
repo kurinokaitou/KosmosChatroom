@@ -2,7 +2,10 @@ package serializable;
 
 public enum TransmissionType {
     LOGIN,
+    LOGOUT,
     REGISTER,
     CHAT,
-    GROUP,
+    GROUP_CHAT,
+    SEARCH,
+    SEARCH_GROUP
 }

@@ -8,16 +8,27 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="fix: move gitignore to root dir">
-      <change afterPath="$PROJECT_DIR$/Common/src/serializable/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/serializable/ResponseStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/serializable/Transmission.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
+    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: complete serializable object">
+      <change afterPath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/command/RegisterCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/command/ShowConnectedUserCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/src/serializable/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/src/serializable/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectionListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectionListenerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/ResponseStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/ResponseStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Transmission.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Transmission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/ServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/command/BaseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/command/BaseCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/command/ShowAllUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/command/ShowAllUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controller/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.db" beforeDir="false" afterPath="$PROJECT_DIR$/user.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +144,7 @@
       <recent name="E:\LearnJava\KosmosChatroom" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.ClientMain">
+  <component name="RunManager" selected="应用程序.ServerMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClientMain" />
       <module name="Client" />
@@ -182,7 +193,7 @@
       <workItem from="1656329432975" duration="2099000" />
       <workItem from="1656378609243" duration="6192000" />
       <workItem from="1656403720889" duration="19127000" />
-      <workItem from="1656464179412" duration="2997000" />
+      <workItem from="1656464179412" duration="23213000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -226,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656431642052</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: complete serializable object">
+      <created>1656467286269</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1656467286269</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,6 +268,7 @@
     <MESSAGE value="fix: gitignore" />
     <MESSAGE value="fix: delete out dir" />
     <MESSAGE value="fix: move gitignore to root dir" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: move gitignore to root dir" />
+    <MESSAGE value="feat: complete serializable object" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: complete serializable object" />
   </component>
 </project>

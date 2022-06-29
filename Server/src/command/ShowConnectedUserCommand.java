@@ -2,8 +2,8 @@ package command;
 
 import controller.UserManager;
 
-public class ShowAllUserCommand extends BaseCommand {
-    public ShowAllUserCommand(String[] args){
+public class ShowConnectedUserCommand extends BaseCommand{
+    public ShowConnectedUserCommand(String[] args){
         if(args.length == 1){
             isValidAttrs = true;
         } else {
@@ -13,7 +13,7 @@ public class ShowAllUserCommand extends BaseCommand {
     @Override
     public void execute() {
         if(isValidAttrs){
-            UserManager.getInstance().showAllUser();
+            UserManager.getInstance().showConnectedUser();
         }
     }
 }

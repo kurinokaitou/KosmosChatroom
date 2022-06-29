@@ -1,5 +1,6 @@
 import command.BaseCommand;
 import command.ShowAllUserCommand;
+import command.ShowConnectedUserCommand;
 import connection.ConnectionListenerThread;
 import controller.ServerManager;
 import controller.UserManager;
@@ -34,6 +35,9 @@ public class ServerMain {
             switch (argsAttr[0]){
                 case "showAllUser":
                     command = new ShowAllUserCommand(argsAttr);
+                    break;
+                case "showConnectedUser":
+                    command = new ShowConnectedUserCommand(argsAttr);
                     break;
                 default:
                     command = null;

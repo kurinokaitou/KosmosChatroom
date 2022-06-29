@@ -1,5 +1,7 @@
 package controller;
 
+import serializable.Request;
+import serializable.Response;
 import serializable.User;
 
 import java.io.*;
@@ -12,6 +14,8 @@ public class ClientManager {
 
     public static ObjectInputStream objectInputStream = null;
     public static ObjectOutputStream objectOutputStream = null;
+
+    private User currentUser;
     private static ClientManager instance = null;
 
     private ClientManager(){
@@ -30,5 +34,34 @@ public class ClientManager {
             instance = new ClientManager();
         }
         return instance;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public static Response sendRequestWithResponse(Request request){
+        Response response = new Response(request.type);
+        try {
+            objectOutputStream.writeObject(request);
+            objectOutputStream.flush();
+            response = (Response) objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public static void sendRequest(Request request){
+        try {
+            objectOutputStream.writeObject(request);
+            objectOutputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -8,8 +8,16 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: server/client connection">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="fix: move gitignore to root dir">
+      <change afterPath="$PROJECT_DIR$/Common/src/serializable/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/src/serializable/ResponseStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/src/serializable/Transmission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectionListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectionListenerThread.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +28,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -103,9 +112,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Chat_Room" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -115,11 +126,14 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\LearnJava\KosmosChatroom" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\LearnJava\KosmosChatroom" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.ServerMain">
+  <component name="RunManager" selected="应用程序.ClientMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClientMain" />
       <module name="Client" />
@@ -151,8 +165,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.ServerMain" />
         <item itemvalue="应用程序.ClientMain" />
+        <item itemvalue="应用程序.ServerMain" />
       </list>
     </recent_temporary>
   </component>
@@ -167,7 +181,8 @@
       <workItem from="1656122223496" duration="856000" />
       <workItem from="1656329432975" duration="2099000" />
       <workItem from="1656378609243" duration="6192000" />
-      <workItem from="1656403720889" duration="18724000" />
+      <workItem from="1656403720889" duration="19127000" />
+      <workItem from="1656464179412" duration="2997000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -190,7 +205,28 @@
       <option name="project" value="LOCAL" />
       <updated>1656431155113</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix: gitignore">
+      <created>1656431472467</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656431472467</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: delete out dir">
+      <created>1656431565831</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1656431565831</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix: move gitignore to root dir">
+      <created>1656431642052</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1656431642052</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +247,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="init repo" />
     <MESSAGE value="feat: server/client connection" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: server/client connection" />
+    <MESSAGE value="fix: gitignore" />
+    <MESSAGE value="fix: delete out dir" />
+    <MESSAGE value="fix: move gitignore to root dir" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: move gitignore to root dir" />
   </component>
 </project>

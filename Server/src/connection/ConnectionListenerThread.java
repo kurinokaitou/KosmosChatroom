@@ -2,10 +2,7 @@ package connection;
 
 import controller.RequestHandlerThread;
 import controller.ServerManager;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 
 public class ConnectionListenerThread implements Runnable{
@@ -21,9 +18,7 @@ public class ConnectionListenerThread implements Runnable{
                 newConnectedClient.setClientThreadHandle(clientThread);
                 clientThread.start();
                 serverManager.connectClient(newConnectedClient);
-                System.out.println("[用户连接]" + clientAddress +
-                        " 当前有"+serverManager.getConnectedClientNum()+"个客户端连接");
-
+                System.out.println("[用户连接]" + clientAddress + " 当前有"+serverManager.getConnectedClientNum()+"个客户端连接");
             }
         } catch (IOException e) {
             e.printStackTrace();

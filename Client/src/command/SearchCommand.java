@@ -6,6 +6,11 @@ import serializable.TransmissionType;
 
 public class SearchCommand extends BaseCommand{
     private String targetUserName;
+
+    /**
+     * 搜索用户命令
+     * @param args 2参数
+     */
     public SearchCommand(String... args){
         if(args.length == 2){
             isValidAttrs = true;

@@ -9,6 +9,10 @@ import serializable.TransmissionType;
 public class ChatCommand extends BaseCommand{
     private Message message;
 
+    /**
+     * 创建发送私聊信息
+     * @param args 3参数
+     */
     public ChatCommand(String... args){
         if(args.length == 3){
             int userId;

@@ -7,6 +7,9 @@ import serializable.Response;
 import serializable.TransmissionType;
 import serializable.User;
 
+/**
+ * 登录命令，
+ */
 public class LoginCommand extends BaseCommand{
     private String userName;
     public String password;

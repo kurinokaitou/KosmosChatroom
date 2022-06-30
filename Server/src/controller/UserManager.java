@@ -31,12 +31,22 @@ public class UserManager {
         return instance;
     }
 
+    /**
+     * 获取某用户未登录时接受的暂存信息
+     * @param userId 用户Id
+     * @return 返回信息列表
+     */
     public List<Message> getUserRetentMessages(int userId){
         List<Message> messages = userRetentMessagesMap.get(userId);
         userRetentMessagesMap.remove(userId);
         return messages;
     }
 
+    /**
+     * 用户未登录时接受暂存信息
+     * @param userId 用户Id
+     * @param message 接受信息
+     */
     public void retentUserMessage(int userId, Message message){
         if(userRetentMessagesMap.containsKey(userId)){
             userRetentMessagesMap.get(userId).add(message);
@@ -47,34 +57,71 @@ public class UserManager {
         }
     }
 
+    /**
+     * 创建新用户
+     * @param name 姓名
+     * @param password 密码
+     */
     public void createNewUser(String name, String password){
         userMap.put(name, new User(name, password, newUserId++));
     }
 
+    /**
+     * 用户表中是否有此用户
+     * @param name 姓名
+     * @return 是否有
+     */
     public boolean hasUser(String name){
         return userMap.containsKey(name);
     }
 
-    public boolean hasUserLogin(int userId){
-        return connectedUserMap.containsKey(userId);
-    }
-
-    public User getLoginUserById(int userId){
-        return connectedUserMap.get(userId);
-    }
-
+    /**
+     * 根据用户姓名在用户表中获取用户
+     * @param name 姓名
+     * @return 用户
+     */
     public User getUserByName(String name){
         return userMap.get(name);
     }
 
+    /**
+     * 用户是否登录
+     * @param userId 用户Id
+     * @return 是否登录
+     */
+    public boolean hasUserLogin(int userId){
+        return connectedUserMap.containsKey(userId);
+    }
+
+    /**
+     * 根据用户Id获取登录的用户
+     * @param userId 用户Id
+     * @return 用户
+     */
+    public User getLoginUserById(int userId){
+        return connectedUserMap.get(userId);
+    }
+
+    /**
+     * 用户登录
+     * @param user 用户
+     */
     public void userLogin(User user){
         connectedUserMap.put(user.getUserId(), user);
     }
 
+    /**
+     * 用户登出
+     */
     public void userLogout(User user){
         connectedUserMap.remove(user.getUserId());
     }
 
+    /**
+     * 从数据库中读取所有用户到内存
+     * @param fileName 数据库名称
+     * @throws IOException 读取异常
+     */
     public void loadAllUser(String fileName) throws IOException {
         ObjectInputStream objectInputStream = null;
         try {
@@ -93,6 +140,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * 保存所有用户到数据库
+     * @param fileName 数据库名称
+     * @throws IOException 写入异常
+     */
     public void saveAllUser(String fileName) throws IOException {
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -112,6 +164,9 @@ public class UserManager {
         }
     }
 
+    /**
+     * 打印所有用户
+     */
     public void showAllUser(){
         if(userMap.size() == 0){
             System.out.println("系统内暂无用户");
@@ -120,6 +175,9 @@ public class UserManager {
         }
     }
 
+    /**
+     * 打印所有登录用户
+     */
     public void showConnectedUser(){
         if(connectedUserMap.size() == 0){
             System.out.println("系统内暂无登录用户");
@@ -128,6 +186,9 @@ public class UserManager {
         }
     }
 
+    /**
+     * 打印所有群组信息
+     */
     public void showAllGroup(){
         if(groupMap.size() == 0){
             System.out.println("系统内暂无群组");
@@ -136,6 +197,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * 从数据库中读取所有群组到内存
+     * @param fileName 数据库名称
+     * @throws IOException 读取异常
+     */
     public void loadAllGroup(String fileName) throws IOException {
         ObjectInputStream objectInputStream = null;
         try {
@@ -150,6 +216,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * 保存所有群组信息到数据库
+     * @param fileName 数据库名称
+     * @throws IOException 写入异常
+     */
     public void saveAllGroup(String fileName) throws IOException {
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -169,6 +240,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * 创建新的群组，并生成一个随机的群号
+     * @param createUserName 创建者名称
+     * @return 群组
+     */
     public Group createNewGroup(String createUserName){
         String code = generateGroupCode();
         Group group = new Group(code);
@@ -177,6 +253,11 @@ public class UserManager {
         return group;
     }
 
+    /**
+     * 根据群号获取群组
+     * @param groupCode 群号
+     * @return 群组
+     */
     public Group getGroupByCode(String groupCode){
         return groupMap.get(groupCode);
     }

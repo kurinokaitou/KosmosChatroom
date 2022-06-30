@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 传输的序列化对象基类
+ */
 public class Transmission implements Serializable {
     private static final long serialVersionUID = 2984401328900115796L;
     private final Map<String, Object> data;

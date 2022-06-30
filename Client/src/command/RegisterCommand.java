@@ -9,12 +9,21 @@ import serializable.User;
 public class RegisterCommand extends BaseCommand{
     private String userName;
     public String password;
+
+    /**
+     * 注册命令，密码必须5位以上
+     * @param args 3参数
+     */
     public RegisterCommand(String... args){
         if(ClientManager.getInstance().getCurrentUser() == null){
             if(args.length == 3){
-                isValidAttrs = true;
                 this.userName = args[1];
-                this.password = args[2];
+                if(args[2].length() <= 5){
+                    System.out.println("密码长度必须6位以上！");
+                } else {
+                    this.password = args[2];
+                    isValidAttrs = true;
+                }
             } else {
                 System.out.println("命令参数不符合要求！");
             }

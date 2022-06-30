@@ -8,6 +8,10 @@ import serializable.TransmissionType;
 public class GroupChatCommand extends BaseCommand{
     private Message message;
 
+    /**
+     * 发送群聊信息
+     * @param args 3参数
+     */
     public GroupChatCommand(String... args){
         if(args.length == 3){
             this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2]);

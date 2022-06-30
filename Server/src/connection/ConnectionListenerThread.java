@@ -5,6 +5,9 @@ import controller.ServerManager;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * 服务器监听客户端链接的守护线程，每次有新客户端链接就创建一个处理客户端请求的线程
+ */
 public class ConnectionListenerThread implements Runnable{
     @Override
     public void run() {

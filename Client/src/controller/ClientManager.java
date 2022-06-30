@@ -36,14 +36,27 @@ public class ClientManager {
         return instance;
     }
 
+    /**
+     * 获取当前用户
+     * @return 当前user
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * 设置当前用户
+     * @param currentUser 当前用户
+     */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
 
+    /**
+     * 向服务器发送请请求，并获得回复
+     * @param request 请求
+     * @return response 回复
+     */
     public static Response sendRequestWithResponse(Request request){
         Response response = new Response(request.type);
         try {
@@ -58,6 +71,10 @@ public class ClientManager {
         return response;
     }
 
+    /**
+     * 向服务器发送请请求，无回复
+     * @param request 请求
+     */
     public static void sendRequest(Request request){
         try {
             objectOutputStream.writeObject(request);
@@ -67,6 +84,10 @@ public class ClientManager {
         }
     }
 
+    /**
+     * 从服务器读取回复
+     * @return response 回复
+     */
     public static Response readResponse(){
         Response response = null;
         try {

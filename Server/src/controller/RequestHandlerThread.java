@@ -12,6 +12,11 @@ public class RequestHandlerThread implements Runnable {
     private final Socket socket;
     private final ConnectedClient client;
 
+    /**
+     * 根据socket和连接的客户端创建一个线程
+     * @param socket 监听的socket
+     * @param connectedClient 客户端
+     */
     public RequestHandlerThread(Socket socket, ConnectedClient connectedClient){
         this.socket = socket;
         this.client = connectedClient;
@@ -175,7 +180,7 @@ public class RequestHandlerThread implements Runnable {
         client.writeObject(response);
     }
 
-    public void handleSearchGroup(Request request){
+    private void handleSearchGroup(Request request){
         String groupCode = (String) request.getAttribute("groupCode");
         Group group = UserManager.getInstance().getGroupByCode(groupCode);
         Response response = new Response(TransmissionType.SEARCH_GROUP);

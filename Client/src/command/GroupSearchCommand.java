@@ -4,8 +4,14 @@ import controller.ClientManager;
 import serializable.Request;
 import serializable.TransmissionType;
 
+
 public class GroupSearchCommand extends BaseCommand{
     private String targetGroupCode;
+
+    /**
+     * 群搜索命令
+     * @param args 参数
+     */
     public GroupSearchCommand(String... args){
         if(args.length == 2){
             isValidAttrs = true;

@@ -52,7 +52,7 @@ public class RequestHandlerThread implements Runnable {
                     handleLogin(request);
                     break;
                 case LOGOUT:
-                    handleLogout(request);
+                    handleLogout();
                     break;
                 case REGISTER:
                     handleRegister(request);
@@ -64,7 +64,7 @@ public class RequestHandlerThread implements Runnable {
                     handleSearchGroup(request);
                     break;
                 case CREATE_GROUP:
-                    handleCreateGroup(request);
+                    handleCreateGroup();
                 default: break;
             }
         }
@@ -159,7 +159,7 @@ public class RequestHandlerThread implements Runnable {
         client.writeRetentMessages();
     }
 
-    private void handleLogout(Request request){
+    private void handleLogout(){
         Response response = new Response(TransmissionType.LOGOUT);
         User user = client.getUser();
         client.setUser(null);
@@ -209,7 +209,7 @@ public class RequestHandlerThread implements Runnable {
         client.writeObject(response);
     }
 
-    private void handleCreateGroup(Request request) {
+    private void handleCreateGroup() {
         Group group =  UserManager.getInstance().createNewGroup(client.getUser().getName());
         Response response = new Response(TransmissionType.CREATE_GROUP);
         response.shortMessage = "群组创建成功";

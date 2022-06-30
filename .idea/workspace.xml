@@ -8,16 +8,11 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: add broadcast &amp; userStorage">
+    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: finish basic chat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/UserStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/UserStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/UserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group.db" beforeDir="false" afterPath="$PROJECT_DIR$/group.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.db" beforeDir="false" afterPath="$PROJECT_DIR$/user.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +172,8 @@
       <workItem from="1656464179412" duration="23395000" />
       <workItem from="1656549243506" duration="4136000" />
       <workItem from="1656559054582" duration="15701000" />
-      <workItem from="1656586673705" duration="13877000" />
+      <workItem from="1656586673705" duration="13943000" />
+      <workItem from="1656602185870" duration="205000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -291,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656597111499</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat: finish basic chat">
+      <created>1656602099589</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1656602099589</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +326,8 @@
     <MESSAGE value="feat: add annotation" />
     <MESSAGE value="feat: regularize message format" />
     <MESSAGE value="feat: add broadcast &amp; userStorage" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add broadcast &amp; userStorage" />
+    <MESSAGE value="feat: finish basic chat" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: finish basic chat" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

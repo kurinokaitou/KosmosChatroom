@@ -46,6 +46,7 @@ public class ResponseHandlerThread implements Runnable {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void handleInitialize(Response response){
         Map<String, User> userHistory = (Map<String, User>)response.getAttribute("userHistory");
         Map<String, Group> groupHistory = (Map<String, Group>) response.getAttribute("groupHistory");
@@ -62,6 +63,7 @@ public class ResponseHandlerThread implements Runnable {
 
     }
 
+    @SuppressWarnings("unchecked")
     private void handleChat(Response response){
         Message message = (Message) response.getAttribute("message");
         List<Message> messages = (List<Message>) response.getAttribute("messages");

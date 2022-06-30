@@ -164,6 +164,7 @@ public class UserManager {
      * @param fileName 数据库名称
      * @throws IOException 读取异常
      */
+    @SuppressWarnings("unchecked")
     public void loadAllUser(String fileName) throws IOException {
         ObjectInputStream objectInputStream = null;
         try {
@@ -198,13 +199,16 @@ public class UserManager {
         ObjectOutputStream objectOutputStream = null;
         try {
             File file = new File(fileName);
+            boolean success = true;
             if(!file.exists()){
-                boolean success = file.createNewFile();
+                success = file.createNewFile();
             }
-            objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
-            List<UserStorage> userList = new ArrayList<>(userMap.values());
-            objectOutputStream.writeObject(userList);
-            objectOutputStream.flush();
+            if(success){
+                objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+                List<UserStorage> userList = new ArrayList<>(userMap.values());
+                objectOutputStream.writeObject(userList);
+                objectOutputStream.flush();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
@@ -251,6 +255,7 @@ public class UserManager {
      * @param fileName 数据库名称
      * @throws IOException 读取异常
      */
+    @SuppressWarnings("unchecked")
     public void loadAllGroup(String fileName) throws IOException {
         ObjectInputStream objectInputStream = null;
         try {
@@ -274,13 +279,16 @@ public class UserManager {
         ObjectOutputStream objectOutputStream = null;
         try {
             File file = new File(fileName);
+            boolean success = true;
             if(!file.exists()){
-                boolean success = file.createNewFile();
+                success = file.createNewFile();
             }
-            objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
-            List<Group> userList = new ArrayList<>(groupMap.values());
-            objectOutputStream.writeObject(userList);
-            objectOutputStream.flush();
+            if(success){
+                objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+                List<Group> userList = new ArrayList<>(groupMap.values());
+                objectOutputStream.writeObject(userList);
+                objectOutputStream.flush();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
@@ -330,7 +338,6 @@ public class UserManager {
     }
 
 //    public void initGroups(){
-//        createNewGroup("Kurino");
 //        createNewGroup("Alice");
 //        createNewGroup("Bob");
 //    }
@@ -339,6 +346,5 @@ public class UserManager {
 //        createNewUser("Bob", "123");
 //        createNewUser("Alice", "123");
 //        createNewUser("Mary", "123");
-//        createNewUser("Kurino", "123");
 //    }
 }

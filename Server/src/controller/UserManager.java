@@ -109,7 +109,10 @@ public class UserManager {
      * @param password 密码
      */
     public void createNewUser(String name, String password){
-        userMap.put(name, new UserStorage(new User(name, password, newUserId++)));
+        UserStorage userStorage = new UserStorage(new User(name, password, newUserId));
+        userMap.put(name, userStorage);
+        idMap.put(newUserId, userStorage.user);
+        newUserId++;
     }
 
     /**
@@ -130,6 +133,11 @@ public class UserManager {
         return userMap.get(name).user;
     }
 
+    /**
+     * 根据用户id在用户表中获取用户
+     * @param userId id
+     * @return 用户
+     */
     public User getUserById(int userId){
         return idMap.get(userId);
     }

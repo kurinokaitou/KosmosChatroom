@@ -54,6 +54,18 @@ public class ClientMain {
                 case "chat":
                     command = new ChatCommand(argsAttr);
                     break;
+                case "search":
+                    command = new SearchCommand(argsAttr);
+                    break;
+                case "groupSearch":
+                    command = new GroupSearchCommand(argsAttr);
+                    break;
+                case "groupChat":
+                    command = new GroupChatCommand(argsAttr);
+                    break;
+                case "groupCreate":
+                    command = new GroupCreateCommand(argsAttr);
+                    break;
                 default:
                     command = null;
             }

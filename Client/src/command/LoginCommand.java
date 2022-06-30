@@ -1,7 +1,7 @@
 package command;
 
 import controller.ClientManager;
-import controller.ResponseListenerThread;
+import controller.ResponseHandlerThread;
 import serializable.Request;
 import serializable.Response;
 import serializable.TransmissionType;
@@ -34,6 +34,6 @@ public class LoginCommand extends BaseCommand{
         Response response = ClientManager.sendRequestWithResponse(request);
         ClientManager.getInstance().setCurrentUser((User) response.getAttribute("user"));
         System.out.println(response.shortMessage);
-        new Thread(new ResponseListenerThread()).start();
+        new Thread(new ResponseHandlerThread()).start();
     }
 }

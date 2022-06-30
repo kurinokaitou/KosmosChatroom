@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     private static final long serialVersionUID = 1725401777770135112L;
     private String name;
-    private String password;
+    transient private String password;
     private int userId;
 
     public User(String name, String pwd, int id){
@@ -42,7 +42,6 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
-                ", password='" + password + '\'' +
                 ", userId=" + userId +
                 '}';
     }

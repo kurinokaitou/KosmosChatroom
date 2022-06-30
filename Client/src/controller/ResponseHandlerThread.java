@@ -5,7 +5,7 @@ import serializable.*;
 /**
  * 用于监听从服务器返回的Response
  */
-public class ResponseListenerThread implements Runnable {
+public class ResponseHandlerThread implements Runnable {
     @Override
     public void run() {
         while (ClientManager.socket.isConnected()){
@@ -20,10 +20,8 @@ public class ResponseListenerThread implements Runnable {
                 }
                 switch (type){
                     case CHAT:
-                        handleChat(response);
-                        break;
                     case GROUP_CHAT:
-                        handleGroupChat(response);
+                        handleChat(response);
                         break;
                     case LOGOUT:
                         handleLogout(response);
@@ -33,6 +31,10 @@ public class ResponseListenerThread implements Runnable {
                         break;
                     case SEARCH_GROUP:
                         handleSearchGroup(response);
+                        break;
+                    case CREATE_GROUP:
+                        handleCreateGroup(response);
+                        break;
                 }
             }
         }
@@ -43,21 +45,22 @@ public class ResponseListenerThread implements Runnable {
         System.out.println(message.content);
     }
 
-    private void handleGroupChat(Response response){
-
-    }
-
     private void handleLogout(Response response){
         ClientManager.getInstance().setCurrentUser(null);
     }
 
 
     private void handleSearch(Response response){
-
+        User targetUser = (User) response.getAttribute("user");
+        System.out.println(targetUser);
     }
 
     private void handleSearchGroup(Response response){
+        System.out.println(response.getAttribute("group"));
+    }
 
+    private void handleCreateGroup(Response response){
+        System.out.println(response.getAttribute("group"));
     }
 
 }

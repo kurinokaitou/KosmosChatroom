@@ -1,25 +1,27 @@
 package controller;
 
+import serializable.Group;
 import serializable.Message;
 import serializable.User;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UserManager {
     private final Map<String, User> userMap;    // 根据用户名存储的所有注册用户
     private final Map<Integer, User> connectedUserMap;     // 根据用户ID存储的所有登录用户
-    private final Map<Integer, List<Message>> userRetentMessageListMap;
+    private final Map<Integer, List<Message>> userRetentMessagesMap;
     private static UserManager instance;
     private static int newUserId = 0;
+
+    private final Map<String, Group> groupMap;
+
     private UserManager(){
         userMap = new ConcurrentHashMap<>();
         connectedUserMap = new ConcurrentHashMap<>();
-        userRetentMessageListMap = new ConcurrentHashMap<>();
+        userRetentMessagesMap = new ConcurrentHashMap<>();
+        groupMap = new ConcurrentHashMap<>();
     }
 
     public static UserManager getInstance(){
@@ -30,18 +32,18 @@ public class UserManager {
     }
 
     public List<Message> getUserRetentMessages(int userId){
-        List<Message> messages = userRetentMessageListMap.get(userId);
-        userRetentMessageListMap.remove(userId);
+        List<Message> messages = userRetentMessagesMap.get(userId);
+        userRetentMessagesMap.remove(userId);
         return messages;
     }
 
     public void retentUserMessage(int userId, Message message){
-        if(userRetentMessageListMap.containsKey(userId)){
-            userRetentMessageListMap.get(userId).add(message);
+        if(userRetentMessagesMap.containsKey(userId)){
+            userRetentMessagesMap.get(userId).add(message);
         } else {
             List<Message> newMessageList = new LinkedList<>();
             newMessageList.add(message);
-            userRetentMessageListMap.put(userId, newMessageList);
+            userRetentMessagesMap.put(userId, newMessageList);
         }
     }
 
@@ -126,17 +128,66 @@ public class UserManager {
         }
     }
 
-    public void initUsers(String fileName){
-        User user1 = new User("Bob", "123", 1);
-        User user2 = new User("Alice", "123", 2);
-        User user3 = new User("Mary", "123", 3);
-        userMap.put(user1.getName(), user1);
-        userMap.put(user2.getName(), user2);
-        userMap.put(user3.getName(), user3);
+    public void loadAllGroup(String fileName) throws IOException {
+        ObjectInputStream objectInputStream = null;
         try {
-            saveAllUser(fileName);
-        } catch (IOException e) {
+            objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
+            List<Group> list = (List<Group>)objectInputStream.readObject();
+            list.forEach(ele-> groupMap.put(ele.getGroupCode(), ele));
+        } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+            assert objectInputStream != null;
+            objectInputStream.close();
         }
+    }
+
+    public void saveAllGroup(String fileName) throws IOException {
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            File file = new File(fileName);
+            if(!file.exists()){
+                boolean success = file.createNewFile();
+            }
+            objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+            List<Group> userList = new ArrayList<>(groupMap.values());
+            objectOutputStream.writeObject(userList);
+            objectOutputStream.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            assert  objectOutputStream != null;
+            objectOutputStream.close();
+        }
+    }
+
+    public Group createNewGroup(String createUserName){
+        String code = generateGroupCode();
+        Group group = new Group(code);
+        group.addUser(userMap.get(createUserName));
+        groupMap.put(code, group);
+        return group;
+    }
+
+    public Group getGroupByCode(String groupCode){
+        return groupMap.get(groupCode);
+    }
+
+    private String generateGroupCode(){
+        Random random = new Random();
+        String code;
+        do{
+            StringBuilder codeBuilder = new StringBuilder();
+            for(int i = 0; i < 4; i++){
+                int index = random.nextInt(36);
+                if(index <= 9){
+                    codeBuilder.append(index);
+                }else {
+                    codeBuilder.append((char) ('a'+ index-10));
+                }
+            }
+            code = codeBuilder.toString();
+        }while (groupMap.containsKey(code));
+        return code;
     }
 }

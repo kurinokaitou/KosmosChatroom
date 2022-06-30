@@ -93,7 +93,7 @@ public class ServerManager {
     /**
      * 返回信息给一组用户
      * @param response 返回信息
-     * @param userGroupList 目标用户组
+     * @param userGroupList 目标用户群组
      */
     public void notifyGroupClients(Response response, List<User> userGroupList){
         userGroupList.forEach(user -> {
@@ -110,9 +110,11 @@ public class ServerManager {
             FileReader reader = new FileReader("config.properties");
             config.load(reader);
             serverSocket = new ServerSocket(Integer.parseInt(config.getProperty("port")));
-            String databasePath = config.getProperty("database");
+            String userDatabase = "user" + config.getProperty("database");
+            String groupDatabase = "group" + config.getProperty("database");
             //UserManager.getInstance().initUsers(databasePath);
-            UserManager.getInstance().loadAllUser(databasePath);
+            UserManager.getInstance().loadAllUser(userDatabase);
+            UserManager.getInstance().loadAllGroup(groupDatabase);
         } catch (IOException e) {
             e.printStackTrace();
         }

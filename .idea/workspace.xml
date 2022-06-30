@@ -8,19 +8,26 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: complete login">
-      <change afterPath="$PROJECT_DIR$/Client/src/command/LogoutCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/controller/ResponseListenerThread.java" afterDir="false" />
+    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: complete group chat">
+      <change afterPath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/command/GroupCreateCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/command/GroupSearchCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/command/SearchCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ClientMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/RegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/controller/ResponseListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/src/serializable/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/ServerMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,20 +146,10 @@
       <recent name="E:\LearnJava\KosmosChatroom" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.ClientMain">
+  <component name="RunManager" selected="应用程序.ServerMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClientMain" />
       <module name="Client" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="priv.kurino.Main" />
-      <module name="KosmosChatroom" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -166,7 +163,6 @@
     </configuration>
     <list>
       <item itemvalue="应用程序.ClientMain" />
-      <item itemvalue="应用程序.Main" />
       <item itemvalue="应用程序.ServerMain" />
     </list>
     <recent_temporary>
@@ -190,7 +186,7 @@
       <workItem from="1656403720889" duration="19127000" />
       <workItem from="1656464179412" duration="23395000" />
       <workItem from="1656549243506" duration="4136000" />
-      <workItem from="1656559054582" duration="5950000" />
+      <workItem from="1656559054582" duration="11629000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -248,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656523491654</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: complete chat">
+      <created>1656572908206</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1656572908207</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,17 +277,8 @@
     <MESSAGE value="fix: move gitignore to root dir" />
     <MESSAGE value="feat: complete serializable object" />
     <MESSAGE value="feat: complete login" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: complete login" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/command/ChatCommand.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: complete chat" />
+    <MESSAGE value="feat: complete group chat" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: complete group chat" />
   </component>
 </project>

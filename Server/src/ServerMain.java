@@ -49,9 +49,11 @@ public class ServerMain {
     }
 
     private static void shutdown(){
-        String name = ServerManager.config.getProperty("database");
+        String userDatabase = "user" + ServerManager.config.getProperty("database");
+        String groupDatabase = "group" + ServerManager.config.getProperty("database");
         try {
-            UserManager.getInstance().saveAllUser(name);
+            UserManager.getInstance().saveAllUser(userDatabase);
+            UserManager.getInstance().saveAllGroup(groupDatabase);
         } catch (IOException e) {
             e.printStackTrace();
         }

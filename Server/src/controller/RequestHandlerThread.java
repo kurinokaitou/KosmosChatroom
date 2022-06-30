@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 
 public class RequestHandlerThread implements Runnable {
     private final Socket socket;
@@ -57,6 +56,9 @@ public class RequestHandlerThread implements Runnable {
                     break;
                 case SEARCH_GROUP:
                     handleSearchGroup(request);
+                    break;
+                case CREATE_GROUP:
+                    handleCreateGroup(request);
                 default: break;
             }
         }
@@ -86,7 +88,18 @@ public class RequestHandlerThread implements Runnable {
     }
 
     private void handleGroupChat(Request request){
-
+        Message message = (Message) request.getAttribute("message");
+        String targetGroupCode = message.groupCode;
+        Group group =  UserManager.getInstance().getGroupByCode(targetGroupCode);
+        Response response = new Response(TransmissionType.GROUP_CHAT);
+        if(group != null){
+            response.setAttribute("message", message);
+            ServerManager.getInstance().notifyGroupClients(response, group.getUserList());
+        } else {
+            response.shortMessage = "群组不存在";
+            response.status = ResponseStatus.NOT_FOUND;
+            client.writeObject(response);
+        }
     }
 
     private void handleLogin(Request request){
@@ -121,7 +134,7 @@ public class RequestHandlerThread implements Runnable {
         User user = client.getUser();
         client.setUser(null);
         UserManager.getInstance().userLogout(user);
-        response.shortMessage = "您已登出";
+        response.shortMessage = "您已登出，再见！";
         response.status = ResponseStatus.SUCCESS;
         client.writeObject(response);
     }
@@ -146,7 +159,7 @@ public class RequestHandlerThread implements Runnable {
         Response response = new Response(TransmissionType.SEARCH);
         User targetUser = UserManager.getInstance().getUserByName(targetName);
         if(targetUser == null){
-            response.shortMessage = "用户名已被使用";
+            response.shortMessage = "未找到用户";
             response.status = ResponseStatus.FAILED;
         } else {
             response.shortMessage = "搜索成功";
@@ -157,6 +170,19 @@ public class RequestHandlerThread implements Runnable {
     }
 
     public void handleSearchGroup(Request request){
+        String groupCode = (String) request.getAttribute("groupCode");
+        Group group = UserManager.getInstance().getGroupByCode(groupCode);
+        Response response = new Response(TransmissionType.SEARCH_GROUP);
+        response.shortMessage = "发现群组！";
+        response.setAttribute("group", group);
+        client.writeObject(response);
+    }
 
+    private void handleCreateGroup(Request request) {
+        Group group =  UserManager.getInstance().createNewGroup(client.getUser().getName());
+        Response response = new Response(TransmissionType.CREATE_GROUP);
+        response.shortMessage = "群组创建成功";
+        response.setAttribute("group", group);
+        client.writeObject(response);
     }
 }

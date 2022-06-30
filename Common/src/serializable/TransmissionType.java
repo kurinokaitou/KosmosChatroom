@@ -7,5 +7,6 @@ public enum TransmissionType {
     CHAT,
     GROUP_CHAT,
     SEARCH,
-    SEARCH_GROUP
+    SEARCH_GROUP,
+    CREATE_GROUP
 }

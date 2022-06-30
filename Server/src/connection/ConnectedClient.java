@@ -124,7 +124,7 @@ public class ConnectedClient {
     /**
      * 读取服务器上用户未登录时接受的暂存信息，并且一次性发送给客户端
      */
-    public void readRetentMessages(){
+    public void writeRetentMessages(){
         List<Message> retentMessages = UserManager.getInstance().getUserRetentMessages(user.getUserId());
         if(retentMessages != null){
             Response res = new Response(TransmissionType.CHAT);

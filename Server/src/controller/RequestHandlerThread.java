@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Map;
 
 public class RequestHandlerThread implements Runnable {
     private final Socket socket;
@@ -82,8 +83,9 @@ public class RequestHandlerThread implements Runnable {
         Message message = (Message) request.getAttribute("message");
         int targetUserId = message.toUserId;
         Response response = new Response(TransmissionType.CHAT);
+        User targetUser = UserManager.getInstance().getUserById(targetUserId);
+        UserManager.getInstance().addUserToUserHistory(targetUser, client.getUser().getName());
         if(UserManager.getInstance().hasUserLogin(targetUserId)){
-            User targetUser = UserManager.getInstance().getLoginUserById(targetUserId);
             response.status = ResponseStatus.SUCCESS;
             response.setAttribute("message", message);
             ServerManager.getInstance().notifyClient(response,targetUser);
@@ -99,9 +101,10 @@ public class RequestHandlerThread implements Runnable {
 
         Response response = new Response(TransmissionType.GROUP_CHAT);
         if(group != null){
-            // 如果是第一次在群组发言则将用户加入群组
+            // 如果是第一次在群组发言则将用户加入群组，并且将此群组加入用户的历史群组
             if(!group.hasUser(client.getUser().getUserId())){
                 group.addUser(client.getUser());
+                UserManager.getInstance().addGroupToUserHistory(group, client.getUser().getName());
             }
             response.setAttribute("message", message);
             response.status = ResponseStatus.SUCCESS;
@@ -121,23 +124,39 @@ public class RequestHandlerThread implements Runnable {
         if(user == null){
             response.shortMessage = "无此用户名";
             response.status = ResponseStatus.NOT_FOUND;
+            client.writeObject(response);
         } else {
             if(!user.getPassword().equals(password)){
                 response.shortMessage = "密码不正确";
                 response.status = ResponseStatus.FAILED;
+                client.writeObject(response);
             } else {
                 if(client.clientIsLogin()){
                     response.shortMessage = "您已登录，不能重复登录";
                     response.status = ResponseStatus.FAILED;
+                    client.writeObject(response);
                 } else {
                     response.shortMessage = "您已登录";
                     response.setAttribute("user", user);
                     response.status = ResponseStatus.SUCCESS;
                     ServerManager.getInstance().ClientLogin(user, client.getClientAddress());
+                    client.writeObject(response);
+                    initializeClient();
                 }
             }
         }
+
+
+    }
+
+    private void initializeClient(){
+        Response response = new Response(TransmissionType.INIT);
+        Map<String, User> userMap = UserManager.getInstance().getUserHistoryUser(client.getUser().getName());
+        Map<String, Group> groupMap = UserManager.getInstance().getUserHistoryGroup(client.getUser().getName());
+        response.setAttribute("userHistory", userMap);
+        response.setAttribute("groupHistory", groupMap);
         client.writeObject(response);
+        client.writeRetentMessages();
     }
 
     private void handleLogout(Request request){

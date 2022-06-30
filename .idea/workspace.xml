@@ -8,19 +8,16 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: regularize message format">
-      <change afterPath="$PROJECT_DIR$/Common/src/serializable/UserStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/command/BroadcastCommand.java" afterDir="false" />
+    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: add broadcast &amp; userStorage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/ServerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/UserStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/UserStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/UserManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/group.db" beforeDir="false" afterPath="$PROJECT_DIR$/group.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.db" beforeDir="false" afterPath="$PROJECT_DIR$/user.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +136,7 @@
       <recent name="E:\LearnJava\KosmosChatroom" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.ServerMain">
+  <component name="RunManager" selected="应用程序.ClientMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClientMain" />
       <module name="Client" />
@@ -180,7 +177,7 @@
       <workItem from="1656464179412" duration="23395000" />
       <workItem from="1656549243506" duration="4136000" />
       <workItem from="1656559054582" duration="15701000" />
-      <workItem from="1656586673705" duration="8573000" />
+      <workItem from="1656586673705" duration="13877000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -287,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656592214878</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat: add broadcast &amp; userStorage">
+      <created>1656597111499</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1656597111499</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +322,17 @@
     <MESSAGE value="fix: group chat no self response" />
     <MESSAGE value="feat: add annotation" />
     <MESSAGE value="feat: regularize message format" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: regularize message format" />
+    <MESSAGE value="feat: add broadcast &amp; userStorage" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add broadcast &amp; userStorage" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.util.concurrent.ConcurrentHashMap$MapEntry" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/KosmosChatroom$ServerMain.ic" NAME="ServerMain 覆盖结果" MODIFIED="1656599723960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

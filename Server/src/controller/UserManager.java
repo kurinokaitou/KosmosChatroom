@@ -8,10 +8,12 @@ import serializable.UserStorage;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class UserManager {
     private final Map<String, UserStorage> userMap;    // 根据用户名存储的所有注册用户
-    private final Map<Integer, User> connectedUserMap;     // 根据用户ID存储的所有登录用户
+    private final Map<Integer, User> idMap;
+    private final Set<Integer> connectedUserSet;     // 根据用户ID存储的所有登录用户
     private final Map<Integer, List<Message>> userRetentMessagesMap;
     private static UserManager instance;
     private static int newUserId = 1;
@@ -20,9 +22,10 @@ public class UserManager {
 
     private UserManager(){
         userMap = new ConcurrentHashMap<>();
-        connectedUserMap = new ConcurrentHashMap<>();
+        connectedUserSet = new ConcurrentSkipListSet<>();
         userRetentMessagesMap = new ConcurrentHashMap<>();
         groupMap = new ConcurrentHashMap<>();
+        idMap = new ConcurrentHashMap<>();
     }
 
     public static UserManager getInstance(){
@@ -30,6 +33,48 @@ public class UserManager {
             instance = new UserManager();
         }
         return instance;
+    }
+
+    /**
+     * 获取用户的历史群聊
+     * @param userName 用户
+     * @return 历史群聊表
+     */
+    public Map<String, Group> getUserHistoryGroup(String userName){
+        return userMap.get(userName).groupHistoryMap;
+    }
+
+    /**
+     * 获取用户的历史私聊用户
+     * @param userName 用户
+     * @return 历史私聊用户表
+     */
+    public Map<String, User> getUserHistoryUser(String userName){
+        return userMap.get(userName).userHistoryMap;
+    }
+
+    /**
+     * 将历史群聊添加到用户的存储中
+     * @param group 历史群聊
+     * @param userName 用户名
+     */
+    public void addGroupToUserHistory(Group group, String userName){
+        Map<String, Group> history = userMap.get(userName).groupHistoryMap;
+        if(history.containsKey(group.getGroupCode())){
+            history.put(group.getGroupCode(), group);
+        }
+    }
+
+    /**
+     * 将历史私聊用户添加到用户的存储中
+     * @param user 历史私聊用户
+     * @param userName 用户名
+     */
+    public void addUserToUserHistory(User user, String userName){
+        Map<String, User> history = userMap.get(userName).userHistoryMap;
+        if(!history.containsKey(user.getName())){
+            userMap.get(userName).userHistoryMap.put(user.getName(), user);
+        }
     }
 
     /**
@@ -85,37 +130,33 @@ public class UserManager {
         return userMap.get(name).user;
     }
 
+    public User getUserById(int userId){
+        return idMap.get(userId);
+    }
+
     /**
      * 用户是否登录
      * @param userId 用户Id
      * @return 是否登录
      */
     public boolean hasUserLogin(int userId){
-        return connectedUserMap.containsKey(userId);
+        return connectedUserSet.contains(userId);
     }
 
-    /**
-     * 根据用户Id获取登录的用户
-     * @param userId 用户Id
-     * @return 用户
-     */
-    public User getLoginUserById(int userId){
-        return connectedUserMap.get(userId);
-    }
 
     /**
      * 用户登录
      * @param user 用户
      */
     public void userLogin(User user){
-        connectedUserMap.put(user.getUserId(), user);
+        connectedUserSet.add(user.getUserId());
     }
 
     /**
      * 用户登出
      */
     public void userLogout(User user){
-        connectedUserMap.remove(user.getUserId());
+        connectedUserSet.remove(user.getUserId());
     }
 
     /**
@@ -129,7 +170,14 @@ public class UserManager {
             objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
             List<UserStorage> list = (List<UserStorage>)objectInputStream.readObject();
             list.forEach((ele)-> {
+                if(ele.userHistoryMap == null){
+                    ele.userHistoryMap = new HashMap<>();
+                }
+                if(ele.groupHistoryMap == null){
+                    ele.groupHistoryMap = new HashMap<>();
+                }
                 userMap.put(ele.user.getName(), ele);
+                idMap.put(ele.user.getUserId(), ele.user);
                 newUserId = Math.max(newUserId, ele.user.getUserId());
             });
             newUserId++;
@@ -180,10 +228,10 @@ public class UserManager {
      * 打印所有登录用户
      */
     public void showConnectedUser(){
-        if(connectedUserMap.size() == 0){
+        if(connectedUserSet.size() == 0){
             System.out.println("系统内暂无登录用户");
         } else {
-            connectedUserMap.values().forEach(System.out::println);
+            connectedUserSet.forEach(id-> System.out.println(idMap.get(id)));
         }
     }
 
@@ -281,16 +329,16 @@ public class UserManager {
         return code;
     }
 
-    public void initGroups(){
-        createNewGroup("Kurino");
-        createNewGroup("Alice");
-        createNewGroup("Bob");
-    }
-
-    public void initUserStorage(){
-        createNewUser("Bob", "123");
-        createNewUser("Alice", "123");
-        createNewUser("Mary", "123");
-        createNewUser("Kurino", "123");
-    }
+//    public void initGroups(){
+//        createNewGroup("Kurino");
+//        createNewGroup("Alice");
+//        createNewGroup("Bob");
+//    }
+//
+//    public void initUserStorage(){
+//        createNewUser("Bob", "123");
+//        createNewUser("Alice", "123");
+//        createNewUser("Mary", "123");
+//        createNewUser("Kurino", "123");
+//    }
 }

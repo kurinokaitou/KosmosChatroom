@@ -8,5 +8,6 @@ public enum TransmissionType {
     GROUP_CHAT,     // 群聊
     SEARCH,         // 查找用户
     SEARCH_GROUP,   // 查找群组
-    CREATE_GROUP    // 创建群组
+    CREATE_GROUP,   // 创建群组
+    INIT,           // 初始化客户端
 }

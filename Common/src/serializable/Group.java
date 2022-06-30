@@ -4,19 +4,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Group implements Serializable {
     private static final long serialVersionUID = 3898375474103954301L;
     private final String groupCode;
-    private Map<Integer, User> userMap;
+    private final Map<Integer, User> userMap;
 
     public Group(String groupCode){
         this.groupCode = groupCode;
+        this.userMap = new ConcurrentHashMap<>();
     }
 
     public User getUserById(int userId){
         return userMap.get(userId);
     }
+
+    public boolean hasUser(int userId) {return userMap.containsKey(userId);}
 
     public void addUser(User user){
         if(!userMap.containsKey(user.getUserId())){
@@ -39,5 +43,13 @@ public class Group implements Serializable {
 
     public List<User> getUserList(){
         return new ArrayList<>(userMap.values());
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "groupCode='" + groupCode + '\'' +
+                ", userMap=" + userMap +
+                '}';
     }
 }

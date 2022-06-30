@@ -114,7 +114,7 @@ public class UserManager {
 
     public void showAllUser(){
         if(userMap.size() == 0){
-            System.out.println("系统内暂无用户。");
+            System.out.println("系统内暂无用户");
         } else {
             userMap.values().forEach(System.out::println);
         }
@@ -122,9 +122,17 @@ public class UserManager {
 
     public void showConnectedUser(){
         if(connectedUserMap.size() == 0){
-            System.out.println("系统内暂无登录用户。");
+            System.out.println("系统内暂无登录用户");
         } else {
             connectedUserMap.values().forEach(System.out::println);
+        }
+    }
+
+    public void showAllGroup(){
+        if(groupMap.size() == 0){
+            System.out.println("系统内暂无群组");
+        } else {
+            groupMap.values().forEach(System.out::println);
         }
     }
 
@@ -189,5 +197,11 @@ public class UserManager {
             code = codeBuilder.toString();
         }while (groupMap.containsKey(code));
         return code;
+    }
+
+    public void initGroups(){
+        createNewGroup("Kurino");
+        createNewGroup("Alice");
+        createNewGroup("Bob");
     }
 }

@@ -83,12 +83,12 @@ public class ConnectedClient {
     public void readRetentMessages(){
         List<Message> retentMessages = UserManager.getInstance().getUserRetentMessages(user.getUserId());
         if(retentMessages != null){
-            retentMessages.forEach(message -> {
+            for(Message message : retentMessages){
                 Response res = new Response(TransmissionType.CHAT);
                 res.status = ResponseStatus.SUCCESS;
                 res.setAttribute("message", message);
                 writeObject(res);
-            });
+            }
         }
     }
 }

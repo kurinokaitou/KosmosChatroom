@@ -95,11 +95,13 @@ public class ServerManager {
      * @param response 返回信息
      * @param userGroupList 目标用户群组
      */
-    public void notifyGroupClients(Response response, List<User> userGroupList){
-        userGroupList.forEach(user -> {
+    public void notifyGroupClients(Response response, List<User> userGroupList, ConnectedClient caller){
+        for(User user : userGroupList){
             ConnectedClient targetClient = connectedClientMap.get(user.getName());
-            targetClient.writeObject(response);
-        });
+            if(targetClient != null && targetClient.clientIsLogin() && targetClient != caller){
+                targetClient.writeObject(response);
+            }
+        }
     }
 
 
@@ -112,7 +114,6 @@ public class ServerManager {
             serverSocket = new ServerSocket(Integer.parseInt(config.getProperty("port")));
             String userDatabase = "user" + config.getProperty("database");
             String groupDatabase = "group" + config.getProperty("database");
-            //UserManager.getInstance().initUsers(databasePath);
             UserManager.getInstance().loadAllUser(userDatabase);
             UserManager.getInstance().loadAllGroup(groupDatabase);
         } catch (IOException e) {

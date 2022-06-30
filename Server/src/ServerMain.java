@@ -1,4 +1,5 @@
 import command.BaseCommand;
+import command.ShowAllGroupCommand;
 import command.ShowAllUserCommand;
 import command.ShowConnectedUserCommand;
 import connection.ConnectionListenerThread;
@@ -38,6 +39,9 @@ public class ServerMain {
                     break;
                 case "showConnectedUser":
                     command = new ShowConnectedUserCommand(argsAttr);
+                    break;
+                case "showAllGroup":
+                    command = new ShowAllGroupCommand(argsAttr);
                     break;
                 default:
                     command = null;

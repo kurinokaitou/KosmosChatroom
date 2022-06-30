@@ -12,7 +12,7 @@ public class ResponseHandlerThread implements Runnable {
             Response response = ClientManager.readResponse();
             TransmissionType type = response.type;
             ResponseStatus status = response.status;
-            if(status != ResponseStatus.SUCCESS){
+            if(status != ResponseStatus.SUCCESS && response.shortMessage != null){
                 System.out.println(status.name() + " " + response.shortMessage);
             } else {
                 if(response.shortMessage != null){

@@ -9,25 +9,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: complete group chat">
-      <change afterPath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/command/GroupCreateCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/command/GroupSearchCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/command/SearchCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/command/ShowAllGroupCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/group.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/controller/ResponseListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/src/serializable/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/src/serializable/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/ServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/UserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +138,7 @@
       <recent name="E:\LearnJava\KosmosChatroom" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.ServerMain">
+  <component name="RunManager" selected="应用程序.ClientMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClientMain" />
       <module name="Client" />
@@ -186,7 +178,7 @@
       <workItem from="1656403720889" duration="19127000" />
       <workItem from="1656464179412" duration="23395000" />
       <workItem from="1656549243506" duration="4136000" />
-      <workItem from="1656559054582" duration="11629000" />
+      <workItem from="1656559054582" duration="15502000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -251,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656572908207</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat: complete group chat">
+      <created>1656578418813</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1656578418813</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

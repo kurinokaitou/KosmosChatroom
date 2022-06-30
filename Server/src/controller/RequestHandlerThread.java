@@ -91,10 +91,16 @@ public class RequestHandlerThread implements Runnable {
         Message message = (Message) request.getAttribute("message");
         String targetGroupCode = message.groupCode;
         Group group =  UserManager.getInstance().getGroupByCode(targetGroupCode);
+
         Response response = new Response(TransmissionType.GROUP_CHAT);
         if(group != null){
+            // 如果是第一次在群组发言则将用户加入群组
+            if(!group.hasUser(client.getUser().getUserId())){
+                group.addUser(client.getUser());
+            }
             response.setAttribute("message", message);
-            ServerManager.getInstance().notifyGroupClients(response, group.getUserList());
+            response.status = ResponseStatus.SUCCESS;
+            ServerManager.getInstance().notifyGroupClients(response, group.getUserList(), client);
         } else {
             response.shortMessage = "群组不存在";
             response.status = ResponseStatus.NOT_FOUND;
@@ -174,6 +180,7 @@ public class RequestHandlerThread implements Runnable {
         Group group = UserManager.getInstance().getGroupByCode(groupCode);
         Response response = new Response(TransmissionType.SEARCH_GROUP);
         response.shortMessage = "发现群组！";
+        response.status = ResponseStatus.SUCCESS;
         response.setAttribute("group", group);
         client.writeObject(response);
     }
@@ -182,6 +189,7 @@ public class RequestHandlerThread implements Runnable {
         Group group =  UserManager.getInstance().createNewGroup(client.getUser().getName());
         Response response = new Response(TransmissionType.CREATE_GROUP);
         response.shortMessage = "群组创建成功";
+        response.status = ResponseStatus.SUCCESS;
         response.setAttribute("group", group);
         client.writeObject(response);
     }

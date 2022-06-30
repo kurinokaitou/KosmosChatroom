@@ -30,6 +30,6 @@ public class ChatCommand extends BaseCommand{
         if(!isValidAttrs)return;
         Request request = new Request(TransmissionType.CHAT);
         request.setAttribute("message", message);
-        request.setAttribute("userId", userId);
+        ClientManager.sendRequest(request);
     }
 }

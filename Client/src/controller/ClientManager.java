@@ -12,8 +12,8 @@ public class ClientManager {
     public static Properties config;
     public static Socket socket;
 
-    public static ObjectInputStream objectInputStream = null;
-    public static ObjectOutputStream objectOutputStream = null;
+    public static ObjectInputStream objectInputStream;
+    public static ObjectOutputStream objectOutputStream;
 
     private User currentUser;
     private static ClientManager instance = null;
@@ -49,7 +49,9 @@ public class ClientManager {
         try {
             objectOutputStream.writeObject(request);
             objectOutputStream.flush();
-            response = (Response) objectInputStream.readObject();
+            synchronized (objectInputStream){
+                response = (Response) objectInputStream.readObject();
+            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -63,5 +65,17 @@ public class ClientManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Response readResponse(){
+        Response response = null;
+        try {
+            synchronized (objectInputStream){
+                response = (Response) objectInputStream.readObject();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 }

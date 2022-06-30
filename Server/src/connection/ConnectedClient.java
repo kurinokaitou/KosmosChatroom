@@ -1,12 +1,14 @@
 package connection;
 
-import serializable.User;
+import controller.UserManager;
+import serializable.*;
 
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class ConnectedClient {
     private User user = null;
@@ -59,7 +61,7 @@ public class ConnectedClient {
         this.user = user;
     }
 
-    public void writeObject(Object writeObject){
+    public synchronized void writeObject(Object writeObject){
         try {
             objectOutputStream.writeObject(writeObject);
             objectOutputStream.flush();
@@ -76,5 +78,17 @@ public class ConnectedClient {
             e.printStackTrace();
         }
         return readObject;
+    }
+
+    public void readRetentMessages(){
+        List<Message> retentMessages = UserManager.getInstance().getUserRetentMessages(user.getUserId());
+        if(retentMessages != null){
+            retentMessages.forEach(message -> {
+                Response res = new Response(TransmissionType.CHAT);
+                res.status = ResponseStatus.SUCCESS;
+                res.setAttribute("message", message);
+                writeObject(res);
+            });
+        }
     }
 }

@@ -3,11 +3,11 @@ package controller;
 import connection.ConnectedClient;
 import serializable.*;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class RequestHandlerThread implements Runnable {
     private final Socket socket;
@@ -73,7 +73,7 @@ public class RequestHandlerThread implements Runnable {
 
     private void handleChat(Request request){
         Message message = (Message) request.getAttribute("message");
-        int targetUserId = (Integer) request.getAttribute("userId");
+        int targetUserId = message.toUserId;
         Response response = new Response(TransmissionType.CHAT);
         if(UserManager.getInstance().hasUserLogin(targetUserId)){
             User targetUser = UserManager.getInstance().getLoginUserById(targetUserId);
@@ -81,7 +81,7 @@ public class RequestHandlerThread implements Runnable {
             response.setAttribute("message", message);
             ServerManager.getInstance().notifyClient(response,targetUser);
         } else {
-            response.status = ResponseStatus.NOT_FOUND;
+            UserManager.getInstance().retentUserMessage(targetUserId, message);
         }
     }
 

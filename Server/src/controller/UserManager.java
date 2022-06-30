@@ -1,10 +1,11 @@
 package controller;
 
+import serializable.Message;
 import serializable.User;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,11 +13,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserManager {
     private final Map<String, User> userMap;    // 根据用户名存储的所有注册用户
     private final Map<Integer, User> connectedUserMap;     // 根据用户ID存储的所有登录用户
+    private final Map<Integer, List<Message>> userRetentMessageListMap;
     private static UserManager instance;
     private static int newUserId = 0;
     private UserManager(){
         userMap = new ConcurrentHashMap<>();
         connectedUserMap = new ConcurrentHashMap<>();
+        userRetentMessageListMap = new ConcurrentHashMap<>();
     }
 
     public static UserManager getInstance(){
@@ -24,6 +27,22 @@ public class UserManager {
             instance = new UserManager();
         }
         return instance;
+    }
+
+    public List<Message> getUserRetentMessages(int userId){
+        List<Message> messages = userRetentMessageListMap.get(userId);
+        userRetentMessageListMap.remove(userId);
+        return messages;
+    }
+
+    public void retentUserMessage(int userId, Message message){
+        if(userRetentMessageListMap.containsKey(userId)){
+            userRetentMessageListMap.get(userId).add(message);
+        } else {
+            List<Message> newMessageList = new LinkedList<>();
+            newMessageList.add(message);
+            userRetentMessageListMap.put(userId, newMessageList);
+        }
     }
 
     public void createNewUser(String name, String password){

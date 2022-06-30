@@ -1,6 +1,4 @@
-import command.BaseCommand;
-import command.LoginCommand;
-import command.RegisterCommand;
+import command.*;
 import controller.ClientManager;
 
 import java.io.IOException;
@@ -11,12 +9,13 @@ import java.util.Scanner;
 
 public class ClientMain {
     public static void main(String[] args){
-        ClientManager manager = ClientManager.getInstance();
         connectToServer();
         handleCommandLine();
+        System.exit(0);
     }
 
     private static void connectToServer() {
+        ClientManager.getInstance();
         String ip = ClientManager.config.getProperty("ip");
         int port = Integer.parseInt(ClientManager.config.getProperty("port"));
         try {
@@ -49,11 +48,19 @@ public class ClientMain {
                 case "register":
                     command = new RegisterCommand(argsAttr);
                     break;
+                case "logout":
+                    command = new LogoutCommand(argsAttr);
+                    break;
+                case "chat":
+                    command = new ChatCommand(argsAttr);
+                    break;
                 default:
                     command = null;
             }
             if(command != null){
                 command.execute();
+            } else {
+                System.out.println("命令不存在!");
             }
         }
     }

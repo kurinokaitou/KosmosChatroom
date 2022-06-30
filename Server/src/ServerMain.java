@@ -1,7 +1,4 @@
-import command.BaseCommand;
-import command.ShowAllGroupCommand;
-import command.ShowAllUserCommand;
-import command.ShowConnectedUserCommand;
+import command.*;
 import connection.ConnectionListenerThread;
 import controller.ServerManager;
 import controller.UserManager;
@@ -42,6 +39,9 @@ public class ServerMain {
                     break;
                 case "showAllGroup":
                     command = new ShowAllGroupCommand(argsAttr);
+                    break;
+                case "broadcast":
+                    command = new BroadcastCommand(argsAttr);
                     break;
                 default:
                     command = null;

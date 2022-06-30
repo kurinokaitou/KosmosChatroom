@@ -3,17 +3,18 @@ package controller;
 import serializable.Group;
 import serializable.Message;
 import serializable.User;
+import serializable.UserStorage;
 
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UserManager {
-    private final Map<String, User> userMap;    // 根据用户名存储的所有注册用户
+    private final Map<String, UserStorage> userMap;    // 根据用户名存储的所有注册用户
     private final Map<Integer, User> connectedUserMap;     // 根据用户ID存储的所有登录用户
     private final Map<Integer, List<Message>> userRetentMessagesMap;
     private static UserManager instance;
-    private static int newUserId = 0;
+    private static int newUserId = 1;
 
     private final Map<String, Group> groupMap;
 
@@ -63,7 +64,7 @@ public class UserManager {
      * @param password 密码
      */
     public void createNewUser(String name, String password){
-        userMap.put(name, new User(name, password, newUserId++));
+        userMap.put(name, new UserStorage(new User(name, password, newUserId++)));
     }
 
     /**
@@ -81,7 +82,7 @@ public class UserManager {
      * @return 用户
      */
     public User getUserByName(String name){
-        return userMap.get(name);
+        return userMap.get(name).user;
     }
 
     /**
@@ -126,10 +127,10 @@ public class UserManager {
         ObjectInputStream objectInputStream = null;
         try {
             objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
-            List<User> list = (List<User>)objectInputStream.readObject();
+            List<UserStorage> list = (List<UserStorage>)objectInputStream.readObject();
             list.forEach((ele)-> {
-                userMap.put(ele.getName(), ele);
-                newUserId = Math.max(newUserId, ele.getUserId());
+                userMap.put(ele.user.getName(), ele);
+                newUserId = Math.max(newUserId, ele.user.getUserId());
             });
             newUserId++;
         } catch (Exception e) {
@@ -153,7 +154,7 @@ public class UserManager {
                 boolean success = file.createNewFile();
             }
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
-            List<User> userList = new ArrayList<>(userMap.values());
+            List<UserStorage> userList = new ArrayList<>(userMap.values());
             objectOutputStream.writeObject(userList);
             objectOutputStream.flush();
         } catch (Exception e) {
@@ -171,7 +172,7 @@ public class UserManager {
         if(userMap.size() == 0){
             System.out.println("系统内暂无用户");
         } else {
-            userMap.values().forEach(System.out::println);
+            userMap.values().forEach(user->System.out.println(user.user));
         }
     }
 
@@ -248,7 +249,7 @@ public class UserManager {
     public Group createNewGroup(String createUserName){
         String code = generateGroupCode();
         Group group = new Group(code);
-        group.addUser(userMap.get(createUserName));
+        group.addUser(userMap.get(createUserName).user);
         groupMap.put(code, group);
         return group;
     }
@@ -284,5 +285,12 @@ public class UserManager {
         createNewGroup("Kurino");
         createNewGroup("Alice");
         createNewGroup("Bob");
+    }
+
+    public void initUserStorage(){
+        createNewUser("Bob", "123");
+        createNewUser("Alice", "123");
+        createNewUser("Mary", "123");
+        createNewUser("Kurino", "123");
     }
 }

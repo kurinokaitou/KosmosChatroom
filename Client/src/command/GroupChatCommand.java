@@ -17,8 +17,7 @@ public class GroupChatCommand extends BaseCommand{
      */
     public GroupChatCommand(String... args){
         if(args.length == 3){
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2], format.format(new Date()));
+            this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2]);
             this.message.setGroupMessage(args[1]);
             isValidAttrs = true;
         } else {

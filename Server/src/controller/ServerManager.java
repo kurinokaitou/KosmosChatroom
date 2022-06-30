@@ -1,8 +1,7 @@
 package controller;
 
 import connection.ConnectedClient;
-import serializable.Response;
-import serializable.User;
+import serializable.*;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class ServerManager {
     public static Properties config;
     private final Map<String, ConnectedClient> connectedClientMap;
     private static ServerManager instance = null;
-
+    public static final User admin = new User("admin", "12345", 0);
     /**
      * 获取连接数
      * @return 连接数
@@ -73,10 +72,16 @@ public class ServerManager {
 
     /**
      * 系统通知所有用户
-     * @param response 返回信息
+     * @param message 返回信息
      */
-    public void broadcastAllClient(Response response){
-        connectedClientMap.values().forEach(client -> client.writeObject(response));
+    public void broadcastAllClient(Message message){
+        Response response = new Response(TransmissionType.CHAT);
+        response.status = ResponseStatus.SUCCESS;
+        for(ConnectedClient client : connectedClientMap.values()){
+            message.setUserMessage(client.getUser().getUserId());
+            response.setAttribute("message", message);
+            client.writeObject(response);
+        }
     }
 
     /**

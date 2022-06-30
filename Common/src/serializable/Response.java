@@ -7,5 +7,6 @@ public class Response extends Transmission {
 
     public Response(TransmissionType type) {
         super(type);
+        this.status = ResponseStatus.SUCCESS;
     }
 }

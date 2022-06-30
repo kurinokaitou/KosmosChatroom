@@ -25,8 +25,8 @@ public class ChatCommand extends BaseCommand{
                 System.out.println("请输入用户ID！");
                 return;
             }
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2], format.format(new Date()));
+
+            this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2]);
             this.message.setUserMessage(userId);
             isValidAttrs = true;
         } else {

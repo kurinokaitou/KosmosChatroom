@@ -1,6 +1,8 @@
 package serializable;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Message implements Serializable {
     private static final long serialVersionUID = -5273070854571257639L;
@@ -16,10 +18,11 @@ public class Message implements Serializable {
      * @param fromUser 来自用户
      * @param content 信息文本
      */
-    public Message(User fromUser, String content, String time){
+    public Message(User fromUser, String content){
         this.fromUser = fromUser;
         this.content = content;
-        this.time = time;
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        this.time = format.format(new Date());
     }
 
     /**

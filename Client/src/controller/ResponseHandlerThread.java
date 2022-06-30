@@ -42,7 +42,7 @@ public class ResponseHandlerThread implements Runnable {
 
     private void handleChat(Response response){
         Message message = (Message) response.getAttribute("message");
-        System.out.println(message.content);
+        System.out.println(message);
     }
 
     private void handleLogout(Response response){

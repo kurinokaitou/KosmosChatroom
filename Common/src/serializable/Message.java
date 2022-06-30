@@ -8,6 +8,7 @@ public class Message implements Serializable {
     public User fromUser;
     public int toUserId;
     public String groupCode;
+    public String time;
     public boolean isGroupChat;     // 当是群聊时，toUserId代表群聊的Id
 
     /**
@@ -15,9 +16,10 @@ public class Message implements Serializable {
      * @param fromUser 来自用户
      * @param content 信息文本
      */
-    public Message(User fromUser, String content){
+    public Message(User fromUser, String content, String time){
         this.fromUser = fromUser;
         this.content = content;
+        this.time = time;
     }
 
     /**
@@ -36,5 +38,12 @@ public class Message implements Serializable {
     public void setUserMessage(int toUserId){
         this.toUserId = toUserId;
         this.isGroupChat = false;
+    }
+
+    @Override
+    public String toString() {
+        return time + " " +
+                fromUser.getName() + ": " +
+                content;
     }
 }

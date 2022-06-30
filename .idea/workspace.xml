@@ -8,31 +8,10 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: add annotation">
+    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: regularize message format">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/GroupCreateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/GroupCreateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/GroupSearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/GroupSearchCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/LogoutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/LogoutCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/RegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/SearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/SearchCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/src/serializable/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/ResponseStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/ResponseStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Transmission.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Transmission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/command/ShowAllGroupCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/command/ShowAllGroupCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/command/ShowAllUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/command/ShowAllUserCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/command/ShowConnectedUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/command/ShowConnectedUserCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectedClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/connection/ConnectionListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/connection/ConnectionListenerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/controller/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/UserManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +171,7 @@
       <workItem from="1656464179412" duration="23395000" />
       <workItem from="1656549243506" duration="4136000" />
       <workItem from="1656559054582" duration="15701000" />
-      <workItem from="1656586673705" duration="3422000" />
+      <workItem from="1656586673705" duration="4302000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -271,7 +250,21 @@
       <option name="project" value="LOCAL" />
       <updated>1656582474768</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat: add annotation">
+      <created>1656591335967</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1656591335967</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: regularize message format">
+      <created>1656591839963</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1656591839963</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,6 +294,7 @@
     <MESSAGE value="feat: complete group chat" />
     <MESSAGE value="fix: group chat no self response" />
     <MESSAGE value="feat: add annotation" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add annotation" />
+    <MESSAGE value="feat: regularize message format" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: regularize message format" />
   </component>
 </project>

@@ -5,6 +5,9 @@ import serializable.Message;
 import serializable.Request;
 import serializable.TransmissionType;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class GroupChatCommand extends BaseCommand{
     private Message message;
 
@@ -14,7 +17,8 @@ public class GroupChatCommand extends BaseCommand{
      */
     public GroupChatCommand(String... args){
         if(args.length == 3){
-            this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2]);
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2], format.format(new Date()));
             this.message.setGroupMessage(args[1]);
             isValidAttrs = true;
         } else {

@@ -1,6 +1,7 @@
 package ui.component;
 
 import ui.UIConstant;
+import ui.panel.ChatPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class ChatList extends JPanel {
     private static final long serialVersionUID = 9211182535663928995L;
-    List<ChatListItem> itemList;
+    public List<ChatListItem> itemList;
     public ChatList(){
         super();
         itemList = new ArrayList<>();

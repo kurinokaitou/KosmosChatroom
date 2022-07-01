@@ -16,6 +16,7 @@ public class UIConstant {
     public final static int CHAT_LIST_WIDTH = 250;
     public final static int CHAT_LIST_ITEM_HEIGHT = 50;
     public final static int CHAT_AREA_WIDTH = 600;
+    public final static int CHAT_AREA_HEIGHT = 400;
 
     public final static ImageIcon CLIENT_ICON;
     public final static ImageIcon CHAT_ICON;

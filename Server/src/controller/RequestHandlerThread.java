@@ -90,6 +90,7 @@ public class RequestHandlerThread implements Runnable {
         Response response = new Response(TransmissionType.CHAT);
         User targetUser = UserManager.getInstance().getUserById(targetUserId);
         UserManager.getInstance().addUserToUserHistory(targetUser, client.getUser().getName());
+        UserManager.getInstance().addUserToUserHistory(client.getUser(), targetUser.getName());
         if(UserManager.getInstance().hasUserLogin(targetUserId)){
             response.status = ResponseStatus.SUCCESS;
             response.setAttribute("message", message);

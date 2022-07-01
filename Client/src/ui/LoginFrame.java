@@ -26,9 +26,9 @@ public class LoginFrame extends JFrame {
     private final JTabbedPane tabPane;
 
     public LoginFrame(boolean success){
-        loginUserNameText = new JTextField();
+        loginUserNameText = new JTextField("Kurino");
         registerUserNameText = new JTextField();
-        loginPasswordField = new JPasswordField();
+        loginPasswordField = new JPasswordField("123");
         registerPasswordField = new JPasswordField();
         confirmPasswordField = new JPasswordField();
         tabPane = new JTabbedPane();

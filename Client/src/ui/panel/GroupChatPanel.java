@@ -14,31 +14,32 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChatPanel extends JPanel {
+public class GroupChatPanel extends JPanel {
     private static final long serialVersionUID = 1830092116307811090L;
     public static SearchChatInput searchChatInput;
     public static ChatList chatList;
     public static Map<Integer, ChatArea> chatAreaMap;
     public static ChatArea currentChatArea;
+    private static GroupChatPanel instance = null;
     public static JPanel eastPanel;
-    private static ChatPanel instance;
     int k = 0;
-    public static ChatPanel getInstance(){
+
+    public static GroupChatPanel getInstance(){
         if(instance == null){
-            instance = new ChatPanel();
+            instance = new GroupChatPanel();
         }
         return instance;
     }
-
-    private ChatPanel(){
+    private GroupChatPanel(){
         super();
         searchChatInput = new SearchChatInput();
         chatList = new ChatList();
         chatAreaMap = new HashMap<>();
         eastPanel = new JPanel();
-        if(ClientManager.userHistory != null){
-            for (User user : ClientManager.userHistory.values()) {
-                chatList.addChatListItem(new ChatListItem(user, chatList, k++));
+        if(ClientManager.groupHistory != null){
+
+            for (Group group : ClientManager.groupHistory) {
+                chatList.addChatListItem(new ChatListItem(group, chatList, k++));
             }
         }
         init();
@@ -58,20 +59,21 @@ public class ChatPanel extends JPanel {
     }
 
     private void initChatArea(){
+        switchChatArea(0);
         eastPanel.setBackground(UIConstant.LIGHT_BACK_COLOR);
         eastPanel.setLayout(new BorderLayout());
-        switchChatArea(0);
+        eastPanel.add(currentChatArea, BorderLayout.NORTH);
         this.add(eastPanel, BorderLayout.EAST);
     }
 
     public void switchChatArea(int index){
         if(currentChatArea != null){
-            eastPanel.remove(currentChatArea);
+            remove(currentChatArea);
         }
         if(chatAreaMap.containsKey(index)){
             currentChatArea = chatAreaMap.get(index);
         }else {
-            currentChatArea = new ChatArea(chatList.itemList.get(index).user);
+            currentChatArea = new ChatArea(chatList.itemList.get(index).group);
             chatAreaMap.put(index, currentChatArea);
         }
         eastPanel.add(currentChatArea, BorderLayout.NORTH);

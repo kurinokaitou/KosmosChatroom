@@ -3,6 +3,7 @@ package ui;
 import command.ShutdownCommand;
 import controller.ClientManager;
 import ui.panel.ChatPanel;
+import ui.panel.GroupChatPanel;
 import ui.panel.SidebarPanel;
 
 import javax.swing.*;
@@ -13,12 +14,12 @@ import java.awt.event.WindowEvent;
 public class MainFrame extends JFrame {
     private static final long serialVersionUID = -8808883923263763897L;
     public static ChatPanel chatPanel;
-    public static ChatPanel groupChatPanel;
+    public static GroupChatPanel groupChatPanel;
     public static JPanel centerPanel;
 
     public MainFrame(){
-        chatPanel = new ChatPanel(false);
-        groupChatPanel = new ChatPanel(true);
+        chatPanel =  ChatPanel.getInstance();
+        groupChatPanel = GroupChatPanel.getInstance();
         centerPanel = new JPanel(true);
         this.init();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

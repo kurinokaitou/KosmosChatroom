@@ -2,6 +2,7 @@ package ui;
 
 import command.ShutdownCommand;
 import controller.ClientManager;
+import ui.component.ToolBarPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +26,13 @@ public class MainFrame extends JFrame {
         this.setBounds((x - this.getWidth())/2 - UIConstant.MAIN_WINDOW_WIDTH/2, (y - this.getHeight()) / 2 - UIConstant.MAIN_WINDOW_HEIGHT/2,
                 UIConstant.MAIN_WINDOW_WIDTH, UIConstant.MAIN_WINDOW_HEIGHT);
         this.setResizable(true);
+
+        JPanel mainPanel = new JPanel(true);
+        mainPanel.setBackground(Color.white);
+        mainPanel.setLayout(new BorderLayout());
+
+        ToolBarPanel toolBarPanel = new ToolBarPanel();
+        mainPanel.add(toolBarPanel, BorderLayout.WEST);
 
         //关闭窗口
         this.addWindowListener(new WindowAdapter() {

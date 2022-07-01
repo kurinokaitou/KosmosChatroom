@@ -13,31 +13,12 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="server build done">
-      <change afterPath="$PROJECT_DIR$/Client/src/command/ShutdownCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/controller/CommandLineThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ui/LoginFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ui/MainFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ui/UIConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/logo.png" afterDir="false" />
+    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: login gui finish">
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/SideIconButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/ToolBarPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/GroupCreateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/GroupCreateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/GroupSearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/GroupSearchCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/LogoutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/LogoutCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/RegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/SearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/SearchCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/command/BaseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/command/BaseCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Transmission.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Transmission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/controller/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ui/UIConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/UIConstant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +191,7 @@
       <workItem from="1656606077913" duration="1097000" />
       <workItem from="1656635923618" duration="9059000" />
       <workItem from="1656657158265" duration="943000" />
-      <workItem from="1656658116071" duration="6771000" />
+      <workItem from="1656658116071" duration="8835000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -352,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656636098524</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="feat: login gui finish">
+      <created>1656665031305</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1656665031305</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,16 +376,12 @@
     <MESSAGE value="fix: some warnings" />
     <MESSAGE value="fix: some bugs" />
     <MESSAGE value="server build done" />
-    <option name="LAST_COMMIT_MESSAGE" value="server build done" />
+    <MESSAGE value="feat: login gui finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: login gui finish" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/controller/ClientManager.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Client/src/ui/LoginFrame.java</url>
           <line>114</line>

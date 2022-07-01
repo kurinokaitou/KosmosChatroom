@@ -60,7 +60,7 @@ public class UserManager {
      */
     public void addGroupToUserHistory(Group group, String userName){
         Map<String, Group> history = userMap.get(userName).groupHistoryMap;
-        if(history.containsKey(group.getGroupCode())){
+        if(!history.containsKey(group.getGroupCode())){
             history.put(group.getGroupCode(), group);
         }
     }

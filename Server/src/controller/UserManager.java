@@ -235,7 +235,7 @@ public class UserManager {
         if(userMap.size() == 0){
             System.out.println("系统内暂无用户");
         } else {
-            userMap.values().forEach(user->System.out.println(user.user));
+            userMap.values().forEach(System.out::println);
         }
     }
 
@@ -348,10 +348,10 @@ public class UserManager {
         return code;
     }
 
-//    public void initGroups(){
-//        createNewGroup("Alice");
-//        createNewGroup("Bob");
-//    }
+    public void initGroups(){
+        createNewGroup("Alice", "AliceGroup");
+        createNewGroup("Bob", "BobGroup");
+    }
 //
 //    public void initUserStorage(){
 //        createNewUser("Bob", "123");

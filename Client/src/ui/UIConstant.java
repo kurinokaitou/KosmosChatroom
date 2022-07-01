@@ -11,6 +11,12 @@ public class UIConstant {
     public final static int MAIN_WINDOW_HEIGHT = 650;
     public final static int LOGIN_WINDOW_WIDTH = 500;
     public final static int LOGIN_WINDOW_HEIGHT = 350;
+
+    public final static int SIDEBAR_WIDTH = 50;
+    public final static int CHAT_LIST_WIDTH = 250;
+    public final static int CHAT_LIST_ITEM_HEIGHT = 50;
+    public final static int CHAT_AREA_WIDTH = 600;
+
     public final static ImageIcon CLIENT_ICON;
     public final static ImageIcon CHAT_ICON;
     public final static ImageIcon GROUP_CHAT_ICON;
@@ -21,19 +27,26 @@ public class UIConstant {
     public final static ImageIcon LOGOUT_ICON_ENABLED;
 
 
-    public final static Color BACK_COLOR;
-    public final static Color TOOL_BAR_BACK_COLOR;
-    public final static Color TABLE_LINE_COLOR;
+    public final static Color LIGHT_BACK_COLOR;
+    public final static Color DEEP_BACK_COLOR;
+    public final static Color SELECTED_BACK_COLOR;
+    public final static Color CHAT_LIST_COLOR;
+    public final static Color SELECTED_CHAT_LIST_COLOR;
+    public static final String FONT_TEXT = "微软雅黑";
+    public static final String FONT_TITLE = "";
+
     static{
         CLIENT_ICON = new ImageIcon("images/logo.png");
-        CHAT_ICON = new ImageIcon("");
-        GROUP_CHAT_ICON = new ImageIcon("");
-        LOGOUT_ICON = new ImageIcon("");
-        CHAT_ICON_ENABLED = new ImageIcon("");
-        GROUP_CHAT_ICON_ENABLED = new ImageIcon("");
-        LOGOUT_ICON_ENABLED = new ImageIcon("");
-        BACK_COLOR = Color.WHITE;
-        TOOL_BAR_BACK_COLOR = new Color(108, 92, 231);
-        TABLE_LINE_COLOR = new Color(229, 229, 229);
+        CHAT_ICON = new ImageIcon("images/CHAT.png");
+        GROUP_CHAT_ICON = new ImageIcon("images/GROUP_CHAT.png");
+        LOGOUT_ICON = new ImageIcon("images/LOGOUT.png");
+        CHAT_ICON_ENABLED = new ImageIcon("images/CHAT_ENABLED.png");
+        GROUP_CHAT_ICON_ENABLED = new ImageIcon("images/GROUP_CHAT_ENABLED.png");
+        LOGOUT_ICON_ENABLED = new ImageIcon("images/LOGOUT_ENABLED.png");
+        LIGHT_BACK_COLOR = Color.WHITE;
+        DEEP_BACK_COLOR = new Color(130, 62, 199);
+        SELECTED_BACK_COLOR = new Color(79, 36, 123);
+        CHAT_LIST_COLOR = new Color(62, 62, 62);
+        SELECTED_CHAT_LIST_COLOR = new Color(100, 100, 100);
     }
 }

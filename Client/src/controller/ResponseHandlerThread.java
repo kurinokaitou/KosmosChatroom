@@ -1,6 +1,9 @@
 package controller;
 
+import command.ApplyInitCommand;
 import serializable.*;
+import ui.MainFrame;
+import ui.UIFrames;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +14,7 @@ import java.util.Map;
 public class ResponseHandlerThread implements Runnable {
     @Override
     public void run() {
-        while (ClientManager.socket.isConnected()){
+        while (ClientManager.socket.isConnected() && ClientManager.getInstance().isLogin()){
             Response response = ClientManager.readResponse();
             if(response == null){
                 break;
@@ -41,30 +44,12 @@ public class ResponseHandlerThread implements Runnable {
                     case CREATE_GROUP:
                         handleCreateGroup(response);
                         break;
-                    case INIT:
-                        handleInitialize(response);
-                        break;
                 }
             }
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private void handleInitialize(Response response){
-        Map<String, User> userHistory = (Map<String, User>)response.getAttribute("userHistory");
-        Map<String, Group> groupHistory = (Map<String, Group>) response.getAttribute("groupHistory");
-        if(userHistory.size() != 0){
-            System.out.println(userHistory);
-        }else {
-            System.out.println("没有历史私聊用户");
-        }
-        if(groupHistory.size() != 0){
-            System.out.println(groupHistory);
-        } else {
-            System.out.println("没有历史群聊");
-        }
 
-    }
 
     @SuppressWarnings("unchecked")
     private void handleChat(Response response){

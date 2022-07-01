@@ -3,8 +3,11 @@ package command;
 import controller.ClientManager;
 import controller.ResponseHandlerThread;
 import serializable.Request;
+import serializable.ResponseStatus;
 import serializable.TransmissionType;
 import serializable.User;
+import ui.MainFrame;
+import ui.UIFrames;
 
 /**
  * 登录命令，
@@ -36,6 +39,5 @@ public class LoginCommand extends BaseCommand{
         response = ClientManager.sendRequestWithResponse(request);
         ClientManager.getInstance().setCurrentUser((User) response.getAttribute("user"));
         System.out.println(response.shortMessage);
-        new Thread(new ResponseHandlerThread(), "ResponseHandlerThread").start();
     }
 }

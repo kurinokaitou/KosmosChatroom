@@ -14,4 +14,10 @@ public class UserStorage implements Serializable {
     public User user;
     public Map<String, Group> groupHistoryMap; // 历史群聊
     public Map<String, User> userHistoryMap;   // 历史私聊用户
+
+    @Override
+    public String toString() {
+        return user + ", groupHistoryMap=" + groupHistoryMap +
+                ", userHistoryMap=" + userHistoryMap;
+    }
 }

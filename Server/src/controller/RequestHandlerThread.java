@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class RequestHandlerThread implements Runnable {
@@ -65,6 +66,10 @@ public class RequestHandlerThread implements Runnable {
                     break;
                 case CREATE_GROUP:
                     handleCreateGroup(request);
+                    break;
+                case INIT:
+                    handleInitializeClient();
+                    break;
                 default: break;
             }
         }
@@ -104,8 +109,8 @@ public class RequestHandlerThread implements Runnable {
             // 如果是第一次在群组发言则将用户加入群组，并且将此群组加入用户的历史群组
             if(!group.hasUser(client.getUser().getUserId())){
                 group.addUser(client.getUser());
-                UserManager.getInstance().addGroupToUserHistory(group, client.getUser().getName());
             }
+            UserManager.getInstance().addGroupToUserHistory(group, client.getUser().getName());
             response.setAttribute("message", message);
             response.status = ResponseStatus.SUCCESS;
             ServerManager.getInstance().notifyGroupClients(response, group.getUserList(), client);
@@ -124,37 +129,31 @@ public class RequestHandlerThread implements Runnable {
         if(user == null){
             response.shortMessage = "无此用户名";
             response.status = ResponseStatus.NOT_FOUND;
-            client.writeObject(response);
         } else {
             if(!user.getPassword().equals(password)){
                 response.shortMessage = "密码不正确";
                 response.status = ResponseStatus.FAILED;
-                client.writeObject(response);
             } else {
                 if(client.clientIsLogin()){
                     response.shortMessage = "您已登录，不能重复登录";
                     response.status = ResponseStatus.FAILED;
-                    client.writeObject(response);
                 } else {
                     response.shortMessage = "您已登录";
                     response.setAttribute("user", user);
                     response.status = ResponseStatus.SUCCESS;
                     ServerManager.getInstance().ClientLogin(user, client.getClientAddress());
-                    client.writeObject(response);
-                    initializeClient();
                 }
             }
         }
-
-
+        client.writeObject(response);
     }
 
-    private void initializeClient(){
+    private void handleInitializeClient(){
         Response response = new Response(TransmissionType.INIT);
         Map<String, User> userMap = UserManager.getInstance().getUserHistoryUser(client.getUser().getName());
         Map<String, Group> groupMap = UserManager.getInstance().getUserHistoryGroup(client.getUser().getName());
         response.setAttribute("userHistory", userMap);
-        response.setAttribute("groupHistory", groupMap);
+        response.setAttribute("groupHistory", new LinkedList<>(groupMap.values()));
         client.writeObject(response);
         client.writeRetentMessages();
     }

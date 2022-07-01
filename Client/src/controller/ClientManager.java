@@ -1,6 +1,7 @@
 package controller;
 
 import command.BaseCommand;
+import serializable.Group;
 import serializable.Request;
 import serializable.Response;
 import serializable.User;
@@ -8,6 +9,8 @@ import serializable.User;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -23,6 +26,9 @@ public class ClientManager {
 
     private User currentUser;
     private static ClientManager instance = null;
+
+    public static Map<String, User> userHistory;
+    public static List<Group> groupHistory;
 
     private ClientManager(){
         config = new Properties();
@@ -41,6 +47,14 @@ public class ClientManager {
             instance = new ClientManager();
         }
         return instance;
+    }
+
+    /**
+     * 判断客户端是否登录
+     * @return 是否登录
+     */
+    public boolean isLogin(){
+        return currentUser != null;
     }
 
     /**

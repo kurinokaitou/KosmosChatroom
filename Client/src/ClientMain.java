@@ -2,6 +2,7 @@ import command.*;
 import controller.ClientManager;
 import controller.CommandLineThread;
 import ui.LoginFrame;
+import ui.UIFrames;
 
 
 import javax.swing.*;
@@ -14,7 +15,6 @@ public class ClientMain {
         boolean success = connectToServer();
         initializeUI(success);
         if(success){
-            System.out.println("开始运行");
             Thread thread = new Thread(new CommandLineThread(),"consoleCommandLine");
             thread.start();
             while (thread.isAlive() && !ClientManager.shouldShutdown){
@@ -51,6 +51,6 @@ public class ClientMain {
                 | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        new LoginFrame(success);
+        UIFrames.loginFrame = new LoginFrame(success);
     }
 }

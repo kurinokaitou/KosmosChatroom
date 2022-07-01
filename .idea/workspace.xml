@@ -13,12 +13,38 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: login gui finish">
-      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/SideIconButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/ToolBarPanel.java" afterDir="false" />
+    <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: finish sidebar appearance">
+      <change afterPath="$PROJECT_DIR$/Client/src/command/ApplyInitCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/UIFrames.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatArea.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatInputArea.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatListItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/SearchChatInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/panel/ChatPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/CHAT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/CHAT_ENABLED.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/GROUP_CHAT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/GROUP_CHAT_ENABLED.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/LOGOUT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/LOGOUT_ENABLED.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/command/LogoutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/LogoutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ClientManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ui/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/LoginFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/ui/UIConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/UIConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ui/component/ToolBarPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/panel/SidebarPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/UserStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/UserStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controller/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/group.db" beforeDir="false" afterPath="$PROJECT_DIR$/group.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/logo.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +146,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
     <property name="project.structure.last.edited" value="工件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -128,12 +154,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="ui.panel" />
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\LearnJava\KosmosChatroom\images" />
       <recent name="E:\LearnJava\KosmosChatroom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\LearnJava\KosmosChatroom\images" />
       <recent name="E:\LearnJava\KosmosChatroom\image" />
       <recent name="E:\LearnJava\KosmosChatroom" />
     </key>
@@ -191,7 +220,7 @@
       <workItem from="1656606077913" duration="1097000" />
       <workItem from="1656635923618" duration="9059000" />
       <workItem from="1656657158265" duration="943000" />
-      <workItem from="1656658116071" duration="8835000" />
+      <workItem from="1656658116071" duration="27496000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1656122431880</created>
@@ -340,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656665031305</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat: finish sidebar appearance">
+      <created>1656667164719</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1656667164719</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,15 +413,21 @@
     <MESSAGE value="fix: some bugs" />
     <MESSAGE value="server build done" />
     <MESSAGE value="feat: login gui finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: login gui finish" />
+    <MESSAGE value="feat: finish sidebar appearance" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: finish sidebar appearance" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/ui/LoginFrame.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/controller/UserManager.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

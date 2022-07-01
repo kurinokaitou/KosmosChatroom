@@ -23,5 +23,6 @@ public class LogoutCommand extends BaseCommand{
         if(!isValidAttrs)return;
         Request request = new Request(TransmissionType.LOGOUT);
         ClientManager.sendRequest(request);
+        ClientManager.getInstance().setCurrentUser(null);
     }
 }

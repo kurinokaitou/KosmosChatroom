@@ -81,6 +81,7 @@ public class Group implements Serializable {
     @Override
     public String toString() {
         return "Group{" +
+                "groupName=" + groupName + '\'' +
                 "groupCode='" + groupCode + '\'' +
                 ", userMap=" + userMap +
                 '}';

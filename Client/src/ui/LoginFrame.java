@@ -1,9 +1,6 @@
 package ui;
 
-import command.BaseCommand;
-import command.LoginCommand;
-import command.RegisterCommand;
-import command.ShutdownCommand;
+import command.*;
 import controller.ClientManager;
 import serializable.ResponseStatus;
 
@@ -47,7 +44,7 @@ public class LoginFrame extends JFrame {
         this.setTitle("登录Kosmos聊天室");
         this.setTitle(UIConstant.CLIENT_NAME);
         this.setIconImage(UIConstant.CLIENT_ICON.getImage());
-        this.setBackground(UIConstant.BACK_COLOR);
+        this.setBackground(UIConstant.LIGHT_BACK_COLOR);
         int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         this.setBounds((x - this.getWidth()) / 2 - UIConstant.LOGIN_WINDOW_WIDTH/2, (y - this.getHeight()) / 2 - UIConstant.LOGIN_WINDOW_HEIGHT/2,
@@ -82,13 +79,11 @@ public class LoginFrame extends JFrame {
         });
 
         // 监听确认按钮
-        confirmBtn.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                if(tabPane.getSelectedIndex() == 0){
-                    handleLogin();
-                } else{
-                    handleRegister();
-                }
+        confirmBtn.addActionListener(e -> {
+            if(tabPane.getSelectedIndex() == 0){
+                handleLogin();
+            } else{
+                handleRegister();
             }
         });
 
@@ -107,11 +102,10 @@ public class LoginFrame extends JFrame {
         }
 
         BaseCommand command = new LoginCommand("login", userName, password);
+        BaseCommand initCommand = new ApplyInitCommand("init");
         command.execute();
-        if(command.response.status == ResponseStatus.SUCCESS){
-            this.dispose();
-            new MainFrame();
-        } else {
+        initCommand.execute();
+        if(command.response.status != ResponseStatus.SUCCESS){
             JOptionPane.showMessageDialog(LoginFrame.this, command.response.shortMessage,
                     "登录失败",JOptionPane.ERROR_MESSAGE);
         }

@@ -16,6 +16,7 @@ public class GroupChatCommand extends BaseCommand{
      * @param args 3参数
      */
     public GroupChatCommand(String... args){
+        super();
         if(args.length == 3){
             this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2]);
             this.message.setGroupMessage(args[1]);

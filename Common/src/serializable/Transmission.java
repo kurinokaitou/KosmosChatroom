@@ -15,6 +15,9 @@ public class Transmission implements Serializable {
         this.type = type;
         this.data = new HashMap<>();
     }
+    public Transmission(){
+        this.data = new HashMap<>();
+    }
     public void setAttribute(String name, Object object){
         data.put(name, object);
     }

@@ -12,6 +12,7 @@ public class SearchCommand extends BaseCommand{
      * @param args 2参数
      */
     public SearchCommand(String... args){
+        super();
         if(args.length == 2){
             isValidAttrs = true;
             this.targetUserName = args[1];

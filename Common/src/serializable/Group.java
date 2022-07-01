@@ -9,14 +9,16 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Group implements Serializable {
     private static final long serialVersionUID = 3898375474103954301L;
     private final String groupCode;
+    private final String groupName;
     private final Map<Integer, User> userMap;
 
     /**
      * 根据随机生成的特定groupCode创建一个群组
      * @param groupCode 随机生成的特定groupCode
      */
-    public Group(String groupCode){
+    public Group(String groupCode, String groupName){
         this.groupCode = groupCode;
+        this.groupName = groupName;
         this.userMap = new ConcurrentHashMap<>();
     }
 
@@ -61,7 +63,7 @@ public class Group implements Serializable {
     }
 
     /**
-     * 获取groupCode
+     * 获取群号
      * @return groupCode
      */
     public String getGroupCode() {
@@ -82,5 +84,13 @@ public class Group implements Serializable {
                 "groupCode='" + groupCode + '\'' +
                 ", userMap=" + userMap +
                 '}';
+    }
+
+    /**
+     * 获取群组名称
+     * @return 群组名称
+     */
+    public String getGroupName() {
+        return groupName;
     }
 }

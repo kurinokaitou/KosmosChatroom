@@ -13,6 +13,7 @@ public class GroupSearchCommand extends BaseCommand{
      * @param args 参数
      */
     public GroupSearchCommand(String... args){
+        super();
         if(args.length == 2){
             isValidAttrs = true;
             this.targetGroupCode = args[1];

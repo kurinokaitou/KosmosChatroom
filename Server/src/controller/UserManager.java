@@ -130,7 +130,10 @@ public class UserManager {
      * @return 用户
      */
     public User getUserByName(String name){
-        return userMap.get(name).user;
+        if(userMap.containsKey(name)){
+            return userMap.get(name).user;
+        } else return null;
+
     }
 
     /**
@@ -310,9 +313,9 @@ public class UserManager {
      * @param createUserName 创建者名称
      * @return 群组
      */
-    public Group createNewGroup(String createUserName){
+    public Group createNewGroup(String createUserName, String groupName){
         String code = generateGroupCode();
-        Group group = new Group(code);
+        Group group = new Group(code, groupName);
         group.addUser(userMap.get(createUserName).user);
         groupMap.put(code, group);
         return group;

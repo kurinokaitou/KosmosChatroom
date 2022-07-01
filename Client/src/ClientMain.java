@@ -1,20 +1,33 @@
 import command.*;
 import controller.ClientManager;
+import controller.CommandLineThread;
+import ui.LoginFrame;
 
-import java.io.IOException;
+
+import javax.swing.*;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class ClientMain {
     public static void main(String[] args){
-        connectToServer();
-        handleCommandLine();
+        boolean success = connectToServer();
+        initializeUI(success);
+        if(success){
+            System.out.println("开始运行");
+            Thread thread = new Thread(new CommandLineThread(),"consoleCommandLine");
+            thread.start();
+            while (thread.isAlive() && !ClientManager.shouldShutdown){
+                while(!ClientManager.commandQueue.isEmpty()){
+                    BaseCommand command = ClientManager.commandQueue.poll();
+                    command.execute();
+                }
+            }
+        }
         System.exit(0);
     }
 
-    private static void connectToServer() {
+    private static boolean connectToServer() {
         ClientManager.getInstance();
         String ip = ClientManager.config.getProperty("ip");
         int port = Integer.parseInt(ClientManager.config.getProperty("port"));
@@ -23,67 +36,21 @@ public class ClientMain {
             ClientManager.objectOutputStream = new ObjectOutputStream(ClientManager.socket.getOutputStream());
             ClientManager.objectInputStream = new ObjectInputStream(ClientManager.socket.getInputStream());
             System.out.println("成功连接到服务器！");
+            return true;
         } catch (Exception e) {
             System.out.println("网络故障，未连接到服务器！");
             e.printStackTrace();
+            return false;
         }
     }
 
-    private static void handleCommandLine(){
-        Scanner in = new Scanner(System.in);
-        String argStr;
-        while(true) {
-            argStr = in.nextLine();
-            argStr = argStr.trim();
-            if (argStr.equals("shutdown")) {
-                shutdown();
-                break;
-            }
-            String[] argsAttr = argStr.split(" ", -1);
-            BaseCommand command;
-            switch (argsAttr[0]){
-                case "login":
-                    command = new LoginCommand(argsAttr);
-                    break;
-                case "register":
-                    command = new RegisterCommand(argsAttr);
-                    break;
-                case "logout":
-                    command = new LogoutCommand(argsAttr);
-                    break;
-                case "chat":
-                    command = new ChatCommand(argsAttr);
-                    break;
-                case "search":
-                    command = new SearchCommand(argsAttr);
-                    break;
-                case "groupSearch":
-                    command = new GroupSearchCommand(argsAttr);
-                    break;
-                case "groupChat":
-                    command = new GroupChatCommand(argsAttr);
-                    break;
-                case "groupCreate":
-                    command = new GroupCreateCommand(argsAttr);
-                    break;
-                default:
-                    command = null;
-            }
-            if(command != null){
-                command.execute();
-            } else {
-                System.out.println("命令不存在!");
-            }
-        }
-    }
-
-    private static void shutdown(){
+    private static void initializeUI(boolean success){
         try {
-            ClientManager.socket.shutdownInput();
-            ClientManager.socket.shutdownOutput();
-            ClientManager.socket.close();
-        } catch (IOException e) {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+        new LoginFrame(success);
     }
 }

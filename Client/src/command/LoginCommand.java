@@ -3,7 +3,6 @@ package command;
 import controller.ClientManager;
 import controller.ResponseHandlerThread;
 import serializable.Request;
-import serializable.Response;
 import serializable.TransmissionType;
 import serializable.User;
 
@@ -12,8 +11,9 @@ import serializable.User;
  */
 public class LoginCommand extends BaseCommand{
     private String userName;
-    public String password;
+    private String password;
     public LoginCommand(String... args){
+        super();
         if(ClientManager.getInstance().getCurrentUser() == null){
             if(args.length == 3){
                 isValidAttrs = true;
@@ -25,7 +25,6 @@ public class LoginCommand extends BaseCommand{
         } else {
             System.out.println("您已登录，不能重复登录");
         }
-
     }
 
     @Override
@@ -34,9 +33,9 @@ public class LoginCommand extends BaseCommand{
         Request request = new Request(TransmissionType.LOGIN);
         request.setAttribute("userName", userName);
         request.setAttribute("password", password);
-        Response response = ClientManager.sendRequestWithResponse(request);
+        response = ClientManager.sendRequestWithResponse(request);
         ClientManager.getInstance().setCurrentUser((User) response.getAttribute("user"));
         System.out.println(response.shortMessage);
-        new Thread(new ResponseHandlerThread()).start();
+        new Thread(new ResponseHandlerThread(), "ResponseHandlerThread").start();
     }
 }

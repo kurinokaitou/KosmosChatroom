@@ -9,4 +9,7 @@ public class Response extends Transmission {
         super(type);
         this.status = ResponseStatus.SUCCESS;
     }
+    public Response(){
+        this.status = ResponseStatus.SUCCESS;
+    }
 }

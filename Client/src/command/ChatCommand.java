@@ -1,13 +1,9 @@
 package command;
 
 import controller.ClientManager;
-import jdk.jfr.Frequency;
 import serializable.Message;
 import serializable.Request;
 import serializable.TransmissionType;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ChatCommand extends BaseCommand{
     private Message message;
@@ -17,6 +13,7 @@ public class ChatCommand extends BaseCommand{
      * @param args 3参数
      */
     public ChatCommand(String... args){
+        super();
         if(args.length == 3){
             int userId;
             try {

@@ -1,12 +1,16 @@
 package controller;
 
+import command.BaseCommand;
 import serializable.Request;
 import serializable.Response;
 import serializable.User;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Properties;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ClientManager {
     public static Properties config;
@@ -14,12 +18,15 @@ public class ClientManager {
 
     public static ObjectInputStream objectInputStream;
     public static ObjectOutputStream objectOutputStream;
+    public static Queue<BaseCommand> commandQueue;
+    public static boolean shouldShutdown = false;
 
     private User currentUser;
     private static ClientManager instance = null;
 
     private ClientManager(){
         config = new Properties();
+        commandQueue = new ConcurrentLinkedQueue<>();
         FileReader reader;
         try {
             reader = new FileReader("config.properties");
@@ -34,6 +41,21 @@ public class ClientManager {
             instance = new ClientManager();
         }
         return instance;
+    }
+
+    /**
+     * 将链接切断并通知结束主线程
+     */
+    public static void shutdown(){
+        try {
+            socket.shutdownInput();
+            socket.shutdownOutput();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            shouldShutdown = true;
+        }
     }
 
     /**
@@ -94,6 +116,8 @@ public class ClientManager {
             synchronized (objectInputStream){
                 response = (Response) objectInputStream.readObject();
             }
+        } catch (SocketException e){
+            System.out.println("Socket关闭");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

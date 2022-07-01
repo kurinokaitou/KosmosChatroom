@@ -15,6 +15,7 @@ public class RegisterCommand extends BaseCommand{
      * @param args 3参数
      */
     public RegisterCommand(String... args){
+        super();
         if(ClientManager.getInstance().getCurrentUser() == null){
             if(args.length == 3){
                 this.userName = args[1];
@@ -39,7 +40,7 @@ public class RegisterCommand extends BaseCommand{
         Request request = new Request(TransmissionType.REGISTER);
         request.setAttribute("userName", userName);
         request.setAttribute("password", password);
-        Response response = ClientManager.sendRequestWithResponse(request);
+        response = ClientManager.sendRequestWithResponse(request);
         ClientManager.getInstance().setCurrentUser((User) response.getAttribute("user"));
         System.out.println(response.shortMessage);
     }

@@ -11,6 +11,7 @@ public class LogoutCommand extends BaseCommand{
      * @param args 1参数
      */
     public LogoutCommand(String... args){
+        super();
         if(args.length == 1){
             isValidAttrs = true;
         } else {

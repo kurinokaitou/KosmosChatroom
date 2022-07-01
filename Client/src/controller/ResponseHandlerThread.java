@@ -13,6 +13,9 @@ public class ResponseHandlerThread implements Runnable {
     public void run() {
         while (ClientManager.socket.isConnected()){
             Response response = ClientManager.readResponse();
+            if(response == null){
+                break;
+            }
             TransmissionType type = response.type;
             ResponseStatus status = response.status;
             if(status != ResponseStatus.SUCCESS && response.shortMessage != null){

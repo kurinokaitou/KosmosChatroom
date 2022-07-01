@@ -64,7 +64,7 @@ public class RequestHandlerThread implements Runnable {
                     handleSearchGroup(request);
                     break;
                 case CREATE_GROUP:
-                    handleCreateGroup();
+                    handleCreateGroup(request);
                 default: break;
             }
         }
@@ -209,8 +209,9 @@ public class RequestHandlerThread implements Runnable {
         client.writeObject(response);
     }
 
-    private void handleCreateGroup() {
-        Group group =  UserManager.getInstance().createNewGroup(client.getUser().getName());
+    private void handleCreateGroup(Request request) {
+        String groupName = (String) request.getAttribute("groupName");
+        Group group =  UserManager.getInstance().createNewGroup(client.getUser().getName(), groupName);
         Response response = new Response(TransmissionType.CREATE_GROUP);
         response.shortMessage = "群组创建成功";
         response.status = ResponseStatus.SUCCESS;

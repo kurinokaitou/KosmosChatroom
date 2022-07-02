@@ -20,14 +20,11 @@ public class ChatPanel extends JPanel {
     public static ChatArea currentChatArea;
     private static ChatInputArea chatInputArea;
     public static JPanel eastPanel;
-    private static ChatPanel instance;
+    private static final ChatPanel instance = new ChatPanel();
     int k = 0;
     private int currentChatIndex = 0;
 
     public static ChatPanel getInstance(){
-        if(instance == null){
-            instance = new ChatPanel();
-        }
         return instance;
     }
 
@@ -51,13 +48,17 @@ public class ChatPanel extends JPanel {
         this.setPreferredSize(preferredSize);
         this.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(chatList,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         Dimension chatListPreferredSize = new Dimension(UIConstant.CHAT_LIST_WIDTH, UIConstant.MAIN_WINDOW_HEIGHT);
+        JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
+        scrollBar.setOpaque(true);
+        scrollBar.setBackground(UIConstant.CHAT_LIST_COLOR);
         JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BorderLayout());
         scrollPanel.setPreferredSize(chatListPreferredSize);
         scrollPanel.add(scrollPane);
+        scrollPanel.add(new SearchInput(false), BorderLayout.NORTH);
         this.add(scrollPanel,  BorderLayout.WEST);
         initChatArea();
         initChatInputArea();
@@ -81,11 +82,10 @@ public class ChatPanel extends JPanel {
     }
 
     public void switchChatArea(int index){
-        if(currentChatIndex == index) return;
-        currentChatIndex = index;
         if(currentChatArea != null){
             eastPanel.remove(currentChatArea);
         }
+        currentChatIndex = index;
         if(chatAreaMap.containsKey(index)){
             currentChatArea = chatAreaMap.get(index);
         }else {
@@ -98,16 +98,20 @@ public class ChatPanel extends JPanel {
 
     public void distributeMessage(Message message){
         boolean distributed = false;
-        for(ChatArea chatArea: chatAreaMap.values()){
-            if(chatArea.user.getUserId() == chatArea.user.getUserId()){
-                chatArea.addMessage(message);
+        for(ChatListItem item: chatList.itemList){
+            if(item.user.getUserId() == message.fromUser.getUserId()){
+                switchChatArea(item.index);
+                chatAreaMap.get(item.index).addMessage(message);
                 distributed = true;
             }
         }
         if(!distributed){
-            User newUser = new User(message.name, message.toUserId);
-            ClientManager.userHistory.put(message.name, newUser);
-            addChatListItem(newUser);
+            if(!ClientManager.userHistory.containsKey(message.fromUser.getName())){
+                ClientManager.userHistory.put(message.fromUser.getName(), message.fromUser);
+                addChatListItem(message.fromUser);
+                currentChatArea.addMessage(message);
+            }
+            switchChatArea(k-1);    // 上一个
         }
     }
 

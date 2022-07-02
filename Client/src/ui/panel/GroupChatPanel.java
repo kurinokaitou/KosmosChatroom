@@ -19,14 +19,11 @@ public class GroupChatPanel extends JPanel {
     public static Map<Integer, ChatArea> chatAreaMap;
     public static ChatArea currentChatArea;
     private static ChatInputArea chatInputArea;
-    private static GroupChatPanel instance = null;
+    private static final GroupChatPanel instance = new GroupChatPanel();
     public static JPanel eastPanel;
     int k = 0;
     private int currentChatIndex = 0;
     public static GroupChatPanel getInstance(){
-        if(instance == null){
-            instance = new GroupChatPanel();
-        }
         return instance;
     }
     private GroupChatPanel(){
@@ -49,13 +46,17 @@ public class GroupChatPanel extends JPanel {
         this.setPreferredSize(preferredSize);
         this.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(chatList,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         Dimension chatListPreferredSize = new Dimension(UIConstant.CHAT_LIST_WIDTH, UIConstant.MAIN_WINDOW_HEIGHT);
+        JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
+        scrollBar.setOpaque(true);
+        scrollBar.setBackground(UIConstant.CHAT_LIST_COLOR);
         JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BorderLayout());
         scrollPanel.setPreferredSize(chatListPreferredSize);
         scrollPanel.add(scrollPane);
+        scrollPanel.add(new SearchInput(true), BorderLayout.NORTH);
         this.add(scrollPanel,  BorderLayout.WEST);
         initChatArea();
         initChatInputArea();
@@ -79,10 +80,10 @@ public class GroupChatPanel extends JPanel {
     }
 
     public void switchChatArea(int index){
-        currentChatIndex = index;
         if(currentChatArea != null){
             eastPanel.remove(currentChatArea);
         }
+        currentChatIndex = index;
         if(chatAreaMap.containsKey(index)){
             currentChatArea = chatAreaMap.get(index);
         }else {
@@ -95,9 +96,9 @@ public class GroupChatPanel extends JPanel {
 
     public void distributeMessage(Message message){
         boolean distributed = false;
-        for(ChatArea chatArea: chatAreaMap.values()){
-            if(chatArea.group.getGroupName().equals(message.groupCode)){
-                chatArea.addMessage(message);
+        for(ChatListItem item: chatList.itemList){
+            if(item.group.getGroupCode().equals(message.groupCode)){
+                chatAreaMap.get(item.index).addMessage(message);
                 distributed = true;
             }
         }

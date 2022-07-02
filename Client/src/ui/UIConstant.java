@@ -37,6 +37,10 @@ public class UIConstant {
     public final static ImageIcon LOGOUT_ICON_ENABLED;
     public static final ImageIcon SEND_ICON;
     public static final ImageIcon ACCOUNT_ICON;
+    public static final ImageIcon ADD_ICON;
+    public static final ImageIcon ADD_ICON_ENABLED;
+    public static final ImageIcon SEARCH_ICON;
+    public static final ImageIcon SEARCH_ICON_ENABLED;
 
     public final static Color LIGHT_BACK_COLOR;
     public final static Color DEEP_BACK_COLOR;
@@ -46,10 +50,16 @@ public class UIConstant {
     public static final String FONT_TEXT = "微软雅黑";
     public static final Color GRAY_BACK_COLOR;
 
+
+
     static{
         CLIENT_ICON = new ImageIcon("images/logo.png");
         SEND_ICON = new ImageIcon("images/send.png");
         ACCOUNT_ICON = new ImageIcon("images/account.png");
+        ADD_ICON = new ImageIcon("images/add.png");
+        ADD_ICON_ENABLED = new ImageIcon("images/add_enabled.png");
+        SEARCH_ICON = new ImageIcon("images/search.png");
+        SEARCH_ICON_ENABLED = new ImageIcon("images/search_enabled.png");
         CHAT_ICON = new ImageIcon("images/CHAT.png");
         GROUP_CHAT_ICON = new ImageIcon("images/GROUP_CHAT.png");
         LOGOUT_ICON = new ImageIcon("images/LOGOUT.png");

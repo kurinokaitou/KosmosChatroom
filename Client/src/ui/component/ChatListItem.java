@@ -18,7 +18,7 @@ public class ChatListItem extends JLabel {
     private final ChatList parentChatList;
     public Color trueColor = UIConstant.CHAT_LIST_COLOR;
     public boolean isGroup;
-    private final int index;
+    public final int index;
     private final MouseListener mouseListener = new MouseListener() {
         @Override
         public void mouseReleased(MouseEvent e) {}
@@ -48,7 +48,7 @@ public class ChatListItem extends JLabel {
         this.user = user;
         this.parentChatList = parentChatList;
         JLabel userName = new JLabel(user.getName());
-        Font font = new Font(UIConstant.FONT_TEXT, Font.BOLD, 15);
+        Font font = new Font(UIConstant.FONT_TEXT, Font.BOLD, 20);
         userName.setFont(font);
         userName.setForeground(Color.white);
         this.add(userName);

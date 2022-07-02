@@ -1,6 +1,7 @@
 package controller;
 
 import command.ApplyInitCommand;
+import command.ApplyRetentCommand;
 import serializable.*;
 import ui.MainFrame;
 import ui.UIFrames;
@@ -16,6 +17,8 @@ import java.util.Map;
 public class ResponseHandlerThread implements Runnable {
     @Override
     public void run() {
+        ApplyRetentCommand command = new ApplyRetentCommand("retent");
+        command.execute();
         while (ClientManager.socket.isConnected() && ClientManager.getInstance().isLogin()){
             Response response = ClientManager.readResponse();
             if(response == null){
@@ -43,10 +46,8 @@ public class ResponseHandlerThread implements Runnable {
                         handleSearch(response);
                         break;
                     case SEARCH_GROUP:
-                        handleSearchGroup(response);
-                        break;
                     case CREATE_GROUP:
-                        handleCreateGroup(response);
+                        handleSearchAndCreateGroup(response);
                         break;
                 }
             }
@@ -66,10 +67,10 @@ public class ResponseHandlerThread implements Runnable {
         Message message = (Message) response.getAttribute("message");
         List<Message> messages = (List<Message>) response.getAttribute("messages");
         if(messages != null){
-            messages.forEach(e->{
-                System.out.println(message);
-                ChatPanel.getInstance().distributeMessage(message);
-            });
+            for (Message e : messages){
+                System.out.println(e);
+                ChatPanel.getInstance().distributeMessage(e);
+            }
         }
         if(message != null){
             System.out.println(message);
@@ -84,22 +85,27 @@ public class ResponseHandlerThread implements Runnable {
 
     private void handleSearch(Response response){
         User targetUser = (User) response.getAttribute("user");
-        ClientManager.userHistory.put(targetUser.getName(), targetUser);
-        ChatPanel.getInstance().addChatListItem(targetUser);
+        if(!ClientManager.userHistory.containsKey(targetUser.getName())){
+            ChatPanel.getInstance().addChatListItem(targetUser);
+            ClientManager.userHistory.put(targetUser.getName(), targetUser);
+        }
+
         System.out.println(targetUser);
     }
 
-    private void handleSearchGroup(Response response){
+    private void handleSearchAndCreateGroup(Response response){
         Group group = (Group) response.getAttribute("group");
-        ClientManager.groupHistory.add(group);
-        GroupChatPanel.getInstance().addChatListItem(group);
-        System.out.println(group);
-    }
-
-    private void handleCreateGroup(Response response){
-        Group group = (Group) response.getAttribute("group");
-        ClientManager.groupHistory.add(group);
-        GroupChatPanel.getInstance().addChatListItem(group);
+        boolean haveGroup = false;
+        for(Group group1 : ClientManager.groupHistory){
+            if(group.getGroupCode().equals(group1.getGroupCode())){
+                haveGroup = true;
+                break;
+            }
+        }
+        if(!haveGroup){
+            GroupChatPanel.getInstance().addChatListItem(group);
+            ClientManager.groupHistory.add(group);
+        }
         System.out.println(group);
     }
 }

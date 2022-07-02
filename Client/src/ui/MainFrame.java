@@ -27,7 +27,7 @@ public class MainFrame extends JFrame {
     }
 
     private void init(){
-        this.setTitle(UIConstant.CLIENT_NAME);
+        this.setTitle(UIConstant.CLIENT_NAME +"--"+ ClientManager.getInstance().getCurrentUser().getName() + "已登录");
         this.setIconImage(UIConstant.CLIENT_ICON.getImage());
         this.setBackground(UIConstant.LIGHT_BACK_COLOR);
         int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();

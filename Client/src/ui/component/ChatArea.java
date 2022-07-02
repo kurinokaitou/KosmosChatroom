@@ -27,7 +27,7 @@ public class ChatArea extends JPanel {
         super();
         this.group = group;
         chatCard = new ChatCard();
-        text = group.getGroupName()+"群聊";
+        text = group.getGroupName()+"(群号:"+group.getGroupCode()+")";
         init(text);
     }
 

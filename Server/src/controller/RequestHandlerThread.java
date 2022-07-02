@@ -70,9 +70,16 @@ public class RequestHandlerThread implements Runnable {
                 case INIT:
                     handleInitializeClient();
                     break;
+                case RETENT:
+                    handleSendRetentMessages();
+                    break;
                 default: break;
             }
         }
+    }
+
+    private void handleSendRetentMessages() {
+        client.writeRetentMessages();
     }
 
     private void initializeIOStream(){
@@ -156,7 +163,6 @@ public class RequestHandlerThread implements Runnable {
         response.setAttribute("userHistory", userMap);
         response.setAttribute("groupHistory", new LinkedList<>(groupMap.values()));
         client.writeObject(response);
-        client.writeRetentMessages();
     }
 
     private void handleLogout(){

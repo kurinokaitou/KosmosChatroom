@@ -104,12 +104,12 @@ public class LoginFrame extends JFrame {
         BaseCommand command = new LoginCommand("login", userName, password);
         BaseCommand initCommand = new ApplyInitCommand("init");
         command.execute();
-        initCommand.execute();
         if(command.response.status != ResponseStatus.SUCCESS){
             JOptionPane.showMessageDialog(LoginFrame.this, command.response.shortMessage,
                     "登录失败",JOptionPane.ERROR_MESSAGE);
+        } else {
+            initCommand.execute();
         }
-
     }
 
     private void handleRegister(){

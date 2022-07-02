@@ -47,12 +47,19 @@ public class MessageCard extends JPanel {
         wrapper.setPreferredSize(new Dimension(bubbleWidth, bubbleHeight));
         wrapper.add(messageBubble);
         JButton avatar = makeAvatar();
+        JTextPane textPane = new JTextPane();
+        textPane.setText(message.time);
+        textPane.setFont(new Font(UIConstant.FONT_TEXT, Font.ITALIC, 12));
+        textPane.setOpaque(true);
+        textPane.setBackground(UIConstant.GRAY_BACK_COLOR);
         if(fromSelf){
+            this.add(textPane);
             this.add(wrapper);
             this.add(avatar);
         }else {
             this.add(avatar);
             this.add(wrapper);
+            this.add(textPane);
         }
 
     }
@@ -127,7 +134,7 @@ public class MessageCard extends JPanel {
             int y = 30;
             // Draw Hello World String
             for(String str: messageRows){
-                graphics2D.drawString(str, 12, y);
+                graphics2D.drawString(str, 24, y);
                 y += fontSize*1.1;
             }
             graphics2D.dispose();

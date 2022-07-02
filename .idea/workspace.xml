@@ -14,24 +14,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ec9f4e7-793c-4736-876c-1da2f74584ed" name="变更" comment="feat: docking server">
-      <change afterPath="$PROJECT_DIR$/images/account.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/command/ApplyRetentCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/ui/component/SearchInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/add.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/add_enabled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/search_enabled.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/ChatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/command/GroupChatCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/controller/ResponseHandlerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ui/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/ui/UIConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/UIConstant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/ui/component/ChatArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/ui/component/ChatCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/ui/component/ChatInputArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatInputArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/ui/component/ChatList.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/ui/component/MessageBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ui/component/ChatListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/component/ChatListItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/ui/component/MessageCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/component/MessageCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/ui/panel/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/panel/ChatPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/ui/panel/GroupChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/ui/panel/GroupChatPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/serializable/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/serializable/TransmissionType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/RequestHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/controller/ServerManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +154,7 @@
       <recent name="E:\LearnJava\KosmosChatroom" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.ServerMain">
+  <component name="RunManager" selected="应用程序.ClientMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClientMain" />
       <module name="Client" />
@@ -385,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656743698945</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="feat: docking server">
+      <created>1656763444883</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1656763444883</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,9 +440,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/controller/UserManager.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/Client/src/ui/panel/ChatPanel.java</url>
+          <line>110</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/ui/component/ChatList.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

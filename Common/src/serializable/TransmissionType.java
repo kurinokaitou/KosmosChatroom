@@ -10,4 +10,5 @@ public enum TransmissionType {
     SEARCH_GROUP,   // 查找群组
     CREATE_GROUP,   // 创建群组
     INIT,           // 初始化客户端
+    RETENT,         // 获取未读信息
 }

@@ -37,17 +37,7 @@ public class ChatListItem extends JLabel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            parentChatList.itemList.forEach(item->{
-                item.trueColor = UIConstant.CHAT_LIST_COLOR;
-                item.setBackground(trueColor);
-            });
-            trueColor = UIConstant.SELECTED_CHAT_LIST_COLOR;
-            setBackground(trueColor);
-            if(isGroup){
-                GroupChatPanel.getInstance().switchChatArea(index);
-            } else {
-                ChatPanel.getInstance().switchChatArea(index);
-            }
+            handleMouseClick();
         }
     };
 
@@ -62,7 +52,7 @@ public class ChatListItem extends JLabel {
         userName.setFont(font);
         userName.setForeground(Color.white);
         this.add(userName);
-        init();
+        init(index);
     }
 
     public ChatListItem(Group group, ChatList parentChatList, int index){
@@ -76,16 +66,35 @@ public class ChatListItem extends JLabel {
         groupName.setFont(font);
         groupName.setForeground(Color.white);
         this.add(groupName);
-        init();
+        init(index);
     }
 
-    private void init(){
+    private void init(int index){
         this.setOpaque(true);
-        this.setBackground(UIConstant.CHAT_LIST_COLOR);
+        if(index == 0){
+            this.setBackground(UIConstant.SELECTED_CHAT_LIST_COLOR);
+        } else {
+            this.setBackground(UIConstant.CHAT_LIST_COLOR);
+        }
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 13));
-        Dimension preferredSizeListItem = new Dimension(UIConstant.CHAT_LIST_WIDTH, UIConstant.CHAT_LIST_ITEM_HEIGHT);
+        Dimension preferredSizeListItem = new Dimension(UIConstant.CHAT_LIST_WIDTH - UIConstant.CHAT_LIST_SCROLL_BAR_WIDTH,
+                UIConstant.CHAT_LIST_ITEM_HEIGHT);
         this.setPreferredSize(preferredSizeListItem);
         this.addMouseListener(mouseListener);
+    }
+
+    public void handleMouseClick(){
+        parentChatList.itemList.forEach(item->{
+            item.trueColor = UIConstant.CHAT_LIST_COLOR;
+            item.setBackground(trueColor);
+        });
+        trueColor = UIConstant.SELECTED_CHAT_LIST_COLOR;
+        setBackground(trueColor);
+        if(isGroup){
+            GroupChatPanel.getInstance().switchChatArea(index);
+        } else {
+            ChatPanel.getInstance().switchChatArea(index);
+        }
     }
 
     public String getChatGroupCode(){

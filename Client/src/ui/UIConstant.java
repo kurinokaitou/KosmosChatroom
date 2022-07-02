@@ -13,10 +13,19 @@ public class UIConstant {
     public final static int LOGIN_WINDOW_HEIGHT = 350;
 
     public final static int SIDEBAR_WIDTH = 50;
+
     public final static int CHAT_LIST_WIDTH = 250;
+    public final static int CHAT_LIST_SCROLL_BAR_WIDTH = 20;
     public final static int CHAT_LIST_ITEM_HEIGHT = 50;
+
     public final static int CHAT_AREA_WIDTH = 600;
-    public final static int CHAT_AREA_HEIGHT = 400;
+    public final static int CHAT_AREA_HEIGHT = 450;
+
+    public final static int CHAT_TITLE_HEIGHT = 50;
+    public final static int CHAT_CARD_HEIGHT = 400;
+
+
+    public final static int CHAT_INPUT_AREA_HEIGHT = 150;
 
     public final static ImageIcon CLIENT_ICON;
     public final static ImageIcon CHAT_ICON;
@@ -26,7 +35,7 @@ public class UIConstant {
     public final static ImageIcon CHAT_ICON_ENABLED;
     public final static ImageIcon GROUP_CHAT_ICON_ENABLED;
     public final static ImageIcon LOGOUT_ICON_ENABLED;
-
+    public static final ImageIcon SEND_ICON;
 
     public final static Color LIGHT_BACK_COLOR;
     public final static Color DEEP_BACK_COLOR;
@@ -35,16 +44,20 @@ public class UIConstant {
     public final static Color SELECTED_CHAT_LIST_COLOR;
     public static final String FONT_TEXT = "微软雅黑";
     public static final String FONT_TITLE = "";
+    public static final Color GRAY_BACK_COLOR;
 
     static{
         CLIENT_ICON = new ImageIcon("images/logo.png");
+        SEND_ICON = new ImageIcon("images/send.png");
         CHAT_ICON = new ImageIcon("images/CHAT.png");
         GROUP_CHAT_ICON = new ImageIcon("images/GROUP_CHAT.png");
         LOGOUT_ICON = new ImageIcon("images/LOGOUT.png");
         CHAT_ICON_ENABLED = new ImageIcon("images/CHAT_ENABLED.png");
         GROUP_CHAT_ICON_ENABLED = new ImageIcon("images/GROUP_CHAT_ENABLED.png");
         LOGOUT_ICON_ENABLED = new ImageIcon("images/LOGOUT_ENABLED.png");
+
         LIGHT_BACK_COLOR = Color.WHITE;
+        GRAY_BACK_COLOR = new Color(200, 200, 200);
         DEEP_BACK_COLOR = new Color(130, 62, 199);
         SELECTED_BACK_COLOR = new Color(79, 36, 123);
         CHAT_LIST_COLOR = new Color(62, 62, 62);

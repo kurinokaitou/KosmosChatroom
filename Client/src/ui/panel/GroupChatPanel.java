@@ -4,10 +4,7 @@ import controller.ClientManager;
 import serializable.Group;
 import serializable.User;
 import ui.UIConstant;
-import ui.component.ChatArea;
-import ui.component.ChatList;
-import ui.component.ChatListItem;
-import ui.component.SearchChatInput;
+import ui.component.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,10 +17,11 @@ public class GroupChatPanel extends JPanel {
     public static ChatList chatList;
     public static Map<Integer, ChatArea> chatAreaMap;
     public static ChatArea currentChatArea;
+    private static ChatInputArea chatInputArea;
     private static GroupChatPanel instance = null;
     public static JPanel eastPanel;
     int k = 0;
-
+    private int currentChatIndex = 0;
     public static GroupChatPanel getInstance(){
         if(instance == null){
             instance = new GroupChatPanel();
@@ -36,6 +34,7 @@ public class GroupChatPanel extends JPanel {
         chatList = new ChatList();
         chatAreaMap = new HashMap<>();
         eastPanel = new JPanel();
+        chatInputArea = new ChatInputArea(true);
         if(ClientManager.groupHistory != null){
 
             for (Group group : ClientManager.groupHistory) {
@@ -48,27 +47,37 @@ public class GroupChatPanel extends JPanel {
     private void init(){
         Dimension preferredSize = new Dimension(UIConstant.CHAT_AREA_WIDTH, UIConstant.MAIN_WINDOW_HEIGHT);
         this.setPreferredSize(preferredSize);
-        this.setMaximumSize(preferredSize);
-        this.setMinimumSize(preferredSize);
         this.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(chatList,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        this.add(scrollPane,  BorderLayout.WEST);
+        Dimension chatListPreferredSize = new Dimension(UIConstant.CHAT_LIST_WIDTH, UIConstant.MAIN_WINDOW_HEIGHT);
+        JPanel scrollPanel = new JPanel();
+        scrollPanel.setLayout(new BorderLayout());
+        scrollPanel.setPreferredSize(chatListPreferredSize);
+        scrollPanel.add(scrollPane);
+        this.add(scrollPanel,  BorderLayout.WEST);
         initChatArea();
+        initChatInputArea();
     }
 
     private void initChatArea(){
-        switchChatArea(0);
         eastPanel.setBackground(UIConstant.LIGHT_BACK_COLOR);
+        eastPanel.setPreferredSize(new Dimension(UIConstant.CHAT_AREA_WIDTH - UIConstant.CHAT_LIST_SCROLL_BAR_WIDTH,
+                UIConstant.MAIN_WINDOW_HEIGHT));
         eastPanel.setLayout(new BorderLayout());
-        eastPanel.add(currentChatArea, BorderLayout.NORTH);
+        switchChatArea(0);
         this.add(eastPanel, BorderLayout.EAST);
     }
 
+    private void initChatInputArea(){
+        eastPanel.add(chatInputArea, BorderLayout.SOUTH);
+    }
+
     public void switchChatArea(int index){
+        currentChatIndex = index;
         if(currentChatArea != null){
-            remove(currentChatArea);
+            eastPanel.remove(currentChatArea);
         }
         if(chatAreaMap.containsKey(index)){
             currentChatArea = chatAreaMap.get(index);

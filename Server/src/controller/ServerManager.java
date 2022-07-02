@@ -78,7 +78,7 @@ public class ServerManager {
         Response response = new Response(TransmissionType.CHAT);
         response.status = ResponseStatus.SUCCESS;
         for(ConnectedClient client : connectedClientMap.values()){
-            message.setUserMessage(client.getUser().getUserId());
+            message.setUserMessage(client.getUser().getUserId(), client.getUser().getName());
             response.setAttribute("message", message);
             client.writeObject(response);
         }

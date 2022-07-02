@@ -2,6 +2,7 @@ package ui.panel;
 
 import controller.ClientManager;
 import serializable.Group;
+import serializable.Message;
 import serializable.User;
 import ui.UIConstant;
 import ui.component.*;
@@ -36,9 +37,8 @@ public class GroupChatPanel extends JPanel {
         eastPanel = new JPanel();
         chatInputArea = new ChatInputArea(true);
         if(ClientManager.groupHistory != null){
-
             for (Group group : ClientManager.groupHistory) {
-                chatList.addChatListItem(new ChatListItem(group, chatList, k++));
+                addChatListItem(group);
             }
         }
         init();
@@ -66,7 +66,11 @@ public class GroupChatPanel extends JPanel {
         eastPanel.setPreferredSize(new Dimension(UIConstant.CHAT_AREA_WIDTH - UIConstant.CHAT_LIST_SCROLL_BAR_WIDTH,
                 UIConstant.MAIN_WINDOW_HEIGHT));
         eastPanel.setLayout(new BorderLayout());
-        switchChatArea(0);
+        if(!chatList.itemList.isEmpty()){
+            currentChatArea = new ChatArea(chatList.itemList.get(0).group);
+            chatAreaMap.put(0, currentChatArea);
+            eastPanel.add(currentChatArea, BorderLayout.NORTH);
+        }
         this.add(eastPanel, BorderLayout.EAST);
     }
 
@@ -87,5 +91,23 @@ public class GroupChatPanel extends JPanel {
         }
         eastPanel.add(currentChatArea, BorderLayout.NORTH);
         eastPanel.updateUI();
+    }
+
+    public void distributeMessage(Message message){
+        boolean distributed = false;
+        for(ChatArea chatArea: chatAreaMap.values()){
+            if(chatArea.group.getGroupName().equals(message.groupCode)){
+                chatArea.addMessage(message);
+                distributed = true;
+            }
+        }
+        if(!distributed){
+            Group newGroup = new Group(message.groupCode, message.name);
+            ClientManager.groupHistory.add(newGroup);
+            addChatListItem(newGroup);
+        }
+    }
+    public void addChatListItem(Group group){
+        chatList.addChatListItem(new ChatListItem(group, chatList, k++));
     }
 }

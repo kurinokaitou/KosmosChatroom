@@ -28,5 +28,6 @@ public class ChatList extends JPanel {
     public void addChatListItem(ChatListItem item){
         itemList.add(item);
         this.add(item);
+        this.updateUI();
     }
 }

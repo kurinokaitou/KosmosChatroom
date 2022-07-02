@@ -4,6 +4,8 @@ import command.ApplyInitCommand;
 import serializable.*;
 import ui.MainFrame;
 import ui.UIFrames;
+import ui.panel.ChatPanel;
+import ui.panel.GroupChatPanel;
 
 import java.util.List;
 import java.util.Map;
@@ -29,8 +31,10 @@ public class ResponseHandlerThread implements Runnable {
                 }
                 switch (type){
                     case CHAT:
-                    case GROUP_CHAT:
                         handleChat(response);
+                        break;
+                    case GROUP_CHAT:
+                        handleGroupChat(response);
                         break;
                     case LOGOUT:
                         handleLogout(response);
@@ -50,16 +54,26 @@ public class ResponseHandlerThread implements Runnable {
     }
 
 
+    private void handleGroupChat(Response response) {
+        Message message = (Message) response.getAttribute("message");
+        System.out.println(message);
+        GroupChatPanel.getInstance().distributeMessage(message);
+    }
+
 
     @SuppressWarnings("unchecked")
     private void handleChat(Response response){
         Message message = (Message) response.getAttribute("message");
         List<Message> messages = (List<Message>) response.getAttribute("messages");
         if(messages != null){
-            messages.forEach(System.out::println);
+            messages.forEach(e->{
+                System.out.println(message);
+                ChatPanel.getInstance().distributeMessage(message);
+            });
         }
         if(message != null){
             System.out.println(message);
+            ChatPanel.getInstance().distributeMessage(message);
         }
     }
 
@@ -70,15 +84,22 @@ public class ResponseHandlerThread implements Runnable {
 
     private void handleSearch(Response response){
         User targetUser = (User) response.getAttribute("user");
+        ClientManager.userHistory.put(targetUser.getName(), targetUser);
+        ChatPanel.getInstance().addChatListItem(targetUser);
         System.out.println(targetUser);
     }
 
     private void handleSearchGroup(Response response){
-        System.out.println(response.getAttribute("group"));
+        Group group = (Group) response.getAttribute("group");
+        ClientManager.groupHistory.add(group);
+        GroupChatPanel.getInstance().addChatListItem(group);
+        System.out.println(group);
     }
 
     private void handleCreateGroup(Response response){
-        System.out.println(response.getAttribute("group"));
+        Group group = (Group) response.getAttribute("group");
+        ClientManager.groupHistory.add(group);
+        GroupChatPanel.getInstance().addChatListItem(group);
+        System.out.println(group);
     }
-
 }

@@ -11,9 +11,12 @@ import java.awt.*;
 public class ChatArea extends JPanel {
     private static final long serialVersionUID = -4880241668060926352L;
     private final ChatCard chatCard;
-    public String text;
+    private final String text;
+    public User user;
+    public Group group;
     public ChatArea(User user){
         super();
+        this.user = user;
         chatCard = new ChatCard();
         text = "与"+user.getName()+"的私聊";
         init(text);
@@ -22,6 +25,7 @@ public class ChatArea extends JPanel {
 
     public ChatArea(Group group){
         super();
+        this.group = group;
         chatCard = new ChatCard();
         text = group.getGroupName()+"群聊";
         init(text);
@@ -45,10 +49,20 @@ public class ChatArea extends JPanel {
         titleLabel.setForeground(Color.white);
         this.add(titleLabel, BorderLayout.NORTH);
         // 聊天区域
-        this.add(chatCard, BorderLayout.SOUTH);
+        JScrollPane scrollPane = new JScrollPane(chatCard,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        Dimension scrollPreferredSize = new Dimension(UIConstant.CHAT_AREA_WIDTH, UIConstant.MAIN_WINDOW_HEIGHT);
+        JPanel scrollPanel = new JPanel();
+        scrollPanel.setLayout(new BorderLayout());
+        scrollPanel.setPreferredSize(scrollPreferredSize);
+        scrollPanel.add(scrollPane);
+        this.add(scrollPanel,  BorderLayout.WEST);
     }
 
     public void addMessage(Message message){
         chatCard.addMessage(message);
+        updateUI();
     }
 }

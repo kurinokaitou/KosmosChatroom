@@ -192,6 +192,7 @@ public class RequestHandlerThread implements Runnable {
             response.shortMessage = "未找到用户";
             response.status = ResponseStatus.FAILED;
         } else {
+            UserManager.getInstance().addUserToUserHistory(targetUser, client.getUser().getName());
             response.shortMessage = "搜索成功";
             response.status = ResponseStatus.SUCCESS;
             response.setAttribute("user", targetUser);
@@ -206,6 +207,7 @@ public class RequestHandlerThread implements Runnable {
         response.shortMessage = "发现群组！";
         response.status = ResponseStatus.SUCCESS;
         response.setAttribute("group", group);
+        UserManager.getInstance().addGroupToUserHistory(group, client.getUser().getName());
         client.writeObject(response);
     }
 
@@ -216,6 +218,7 @@ public class RequestHandlerThread implements Runnable {
         response.shortMessage = "群组创建成功";
         response.status = ResponseStatus.SUCCESS;
         response.setAttribute("group", group);
+        UserManager.getInstance().addGroupToUserHistory(group, client.getUser().getName());
         client.writeObject(response);
     }
 }

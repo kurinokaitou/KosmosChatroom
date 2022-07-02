@@ -1,6 +1,7 @@
 package command;
 
 import controller.ClientManager;
+import serializable.Group;
 import serializable.Message;
 import serializable.Request;
 import serializable.TransmissionType;
@@ -19,12 +20,29 @@ public class GroupChatCommand extends BaseCommand{
         super();
         if(args.length == 3){
             this.message = new Message(ClientManager.getInstance().getCurrentUser(),args[2]);
-            this.message.setGroupMessage(args[1]);
-            isValidAttrs = true;
+            String groupName = null;
+            for(Group group: ClientManager.groupHistory){
+                if(group.getGroupCode().equals(args[1])){
+                    groupName = group.getGroupName();
+                }
+            }
+            if(groupName != null){
+                this.message.setGroupMessage(args[1], groupName);
+                isValidAttrs = true;
+            } else {
+                System.out.println("历史群聊中不存在群号");
+            }
         } else {
             System.out.println("命令参数不符合要求！");
         }
     }
+
+    public GroupChatCommand(Message message) {
+        super();
+        this.message = message;
+        isValidAttrs = true;
+    }
+
     @Override
     public void execute() {
         if(!isValidAttrs)return;

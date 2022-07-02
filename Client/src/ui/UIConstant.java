@@ -36,6 +36,7 @@ public class UIConstant {
     public final static ImageIcon GROUP_CHAT_ICON_ENABLED;
     public final static ImageIcon LOGOUT_ICON_ENABLED;
     public static final ImageIcon SEND_ICON;
+    public static final ImageIcon ACCOUNT_ICON;
 
     public final static Color LIGHT_BACK_COLOR;
     public final static Color DEEP_BACK_COLOR;
@@ -43,12 +44,12 @@ public class UIConstant {
     public final static Color CHAT_LIST_COLOR;
     public final static Color SELECTED_CHAT_LIST_COLOR;
     public static final String FONT_TEXT = "微软雅黑";
-    public static final String FONT_TITLE = "";
     public static final Color GRAY_BACK_COLOR;
 
     static{
         CLIENT_ICON = new ImageIcon("images/logo.png");
         SEND_ICON = new ImageIcon("images/send.png");
+        ACCOUNT_ICON = new ImageIcon("images/account.png");
         CHAT_ICON = new ImageIcon("images/CHAT.png");
         GROUP_CHAT_ICON = new ImageIcon("images/GROUP_CHAT.png");
         LOGOUT_ICON = new ImageIcon("images/LOGOUT.png");

@@ -2,6 +2,7 @@ package ui.panel;
 
 import controller.ClientManager;
 import serializable.Group;
+import serializable.Message;
 import serializable.User;
 import ui.UIConstant;
 import ui.component.*;
@@ -39,7 +40,7 @@ public class ChatPanel extends JPanel {
         chatInputArea = new ChatInputArea(false);
         if(ClientManager.userHistory != null){
             for (User user : ClientManager.userHistory.values()) {
-                chatList.addChatListItem(new ChatListItem(user, chatList, k++));
+                addChatListItem(user);
             }
         }
         init();
@@ -67,9 +68,11 @@ public class ChatPanel extends JPanel {
         eastPanel.setPreferredSize(new Dimension(UIConstant.CHAT_AREA_WIDTH - UIConstant.CHAT_LIST_SCROLL_BAR_WIDTH,
                 UIConstant.MAIN_WINDOW_HEIGHT));
         eastPanel.setLayout(new BorderLayout());
-        currentChatArea = new ChatArea(chatList.itemList.get(0).user);
-        chatAreaMap.put(0, currentChatArea);
-        eastPanel.add(currentChatArea, BorderLayout.NORTH);
+        if(!chatList.itemList.isEmpty()){
+            currentChatArea = new ChatArea(chatList.itemList.get(0).user);
+            chatAreaMap.put(0, currentChatArea);
+            eastPanel.add(currentChatArea, BorderLayout.NORTH);
+        }
         this.add(eastPanel, BorderLayout.EAST);
     }
 
@@ -91,5 +94,24 @@ public class ChatPanel extends JPanel {
         }
         eastPanel.add(currentChatArea, BorderLayout.NORTH);
         eastPanel.updateUI();
+    }
+
+    public void distributeMessage(Message message){
+        boolean distributed = false;
+        for(ChatArea chatArea: chatAreaMap.values()){
+            if(chatArea.user.getUserId() == chatArea.user.getUserId()){
+                chatArea.addMessage(message);
+                distributed = true;
+            }
+        }
+        if(!distributed){
+            User newUser = new User(message.name, message.toUserId);
+            ClientManager.userHistory.put(message.name, newUser);
+            addChatListItem(newUser);
+        }
+    }
+
+    public void addChatListItem(User user){
+        chatList.addChatListItem(new ChatListItem(user, chatList, k++));
     }
 }

@@ -10,6 +10,7 @@ public class Message implements Serializable {
     public User fromUser;
     public int toUserId;
     public String groupCode;
+    public String name;
     public String time;
     public boolean isGroupChat;     // 当是群聊时，toUserId代表群聊的Id
 
@@ -29,7 +30,8 @@ public class Message implements Serializable {
      * 设定信息为群发
      * @param groupCode 群号
      */
-    public void setGroupMessage(String groupCode){
+    public void setGroupMessage(String groupCode, String groupName){
+        this.name = groupName;
         this.groupCode = groupCode;
         this.isGroupChat = true;
     }
@@ -38,7 +40,8 @@ public class Message implements Serializable {
      * 设定信息为私聊
      * @param toUserId 用户Id
      */
-    public void setUserMessage(int toUserId){
+    public void setUserMessage(int toUserId, String userName){
+        this.name = userName;
         this.toUserId = toUserId;
         this.isGroupChat = false;
     }

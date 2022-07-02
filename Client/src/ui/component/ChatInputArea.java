@@ -1,7 +1,12 @@
 package ui.component;
 
+import command.BaseCommand;
+import command.ChatCommand;
+import command.GroupChatCommand;
 import controller.ClientManager;
+import serializable.Group;
 import serializable.Message;
+import ui.LoginFrame;
 import ui.UIConstant;
 import ui.panel.ChatPanel;
 import ui.panel.GroupChatPanel;
@@ -42,15 +47,29 @@ public class ChatInputArea extends JPanel {
 
     private void addEventListener(){
         submitButton.addActionListener(e->{
-            Message message = new Message(ClientManager.getInstance().getCurrentUser(), textArea.getText());
-            textArea.setText("");
-            if(isGroup){
-                GroupChatPanel.currentChatArea.addMessage(message);
-                GroupChatPanel.currentChatArea.updateUI();
-            } else {
-                ChatPanel.currentChatArea.addMessage(message);
-                ChatPanel.currentChatArea.updateUI();
+            String text = textArea.getText();
+            if(text.equals("")){
+                JOptionPane.showMessageDialog(getParent(), "不能发送空信息",
+                        "发送失败",JOptionPane.WARNING_MESSAGE);
+                return;
             }
+            Message message = new Message(ClientManager.getInstance().getCurrentUser(), text);
+            textArea.setText("");
+            BaseCommand command;
+            if(isGroup){
+                String groupCode = GroupChatPanel.currentChatArea.group.getGroupCode();
+                String groupName = GroupChatPanel.currentChatArea.group.getGroupName();
+                message.setGroupMessage(groupCode, groupName);
+                GroupChatPanel.currentChatArea.addMessage(message);
+                command = new GroupChatCommand(message);
+            } else {
+                int userId = ChatPanel.currentChatArea.user.getUserId();
+                String userName = ChatPanel.currentChatArea.user.getName();
+                message.setUserMessage(userId, userName);
+                ChatPanel.currentChatArea.addMessage(message);
+                command = new ChatCommand(message);
+            }
+            ClientManager.commandQueue.add(command);
         });
     }
 }

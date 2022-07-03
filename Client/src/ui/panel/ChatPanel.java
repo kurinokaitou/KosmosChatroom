@@ -109,9 +109,9 @@ public class ChatPanel extends JPanel {
             if(!ClientManager.userHistory.containsKey(message.fromUser.getName())){
                 ClientManager.userHistory.put(message.fromUser.getName(), message.fromUser);
                 addChatListItem(message.fromUser);
+                switchChatArea(k-1);    // 上一个
                 currentChatArea.addMessage(message);
             }
-            switchChatArea(k-1);    // 上一个
         }
     }
 
